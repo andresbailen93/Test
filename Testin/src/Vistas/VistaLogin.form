@@ -141,6 +141,9 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="pass">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -158,14 +161,17 @@
         <Component class="javax.swing.JButton" name="btnIdiomaES">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/Flag_of_Spain_W22H13px.png"/>
+              <Image iconType="3" name="/Vistas/es.gif"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIdiomaESActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnIdiomaUK">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/uk_flag.gif"/>
+              <Image iconType="3" name="/Vistas/uk.gif"/>
             </Property>
           </Properties>
         </Component>
