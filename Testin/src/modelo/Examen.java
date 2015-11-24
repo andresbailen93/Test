@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 /**
@@ -15,7 +16,7 @@ public class Examen {
 
     private String dni;
     private int id_test;
-    private Calendar fecha;
+    private Date fecha;
     private int aciertos;
     private int fallos;
     private double nota;
@@ -37,7 +38,7 @@ public class Examen {
      * @param fallos Numero de fallos en el examen.
      * @param nota Nota final en el examen
      */
-    public Examen(String dni, int id_test, Calendar fecha, int aciertos, int fallos, double nota) {
+    public Examen(String dni, int id_test, Date fecha, int aciertos, int fallos, double nota) {
         this.dni = dni;
         this.id_test = id_test;
         this.fecha = fecha;
@@ -70,7 +71,7 @@ public class Examen {
      *
      * @return Calendar devuelve la fecha del examen.
      */
-    public Calendar getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
@@ -124,7 +125,7 @@ public class Examen {
      *
      * @param fecha fecha del examen
      */
-    public void setFecha(Calendar fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
