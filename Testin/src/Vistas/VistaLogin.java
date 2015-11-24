@@ -71,8 +71,8 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario:");
 
-        btnIdiomaES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Flag_of_Spain_W22H13px.png")));
-        btnIdiomaUK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/uk_flag.gif")));
+        btnIdiomaES.setIcon(new javax.swing.ImageIcon(ClassLoader.getSystemResource("resources/Flag_of_Spain_W22H13px.png")));
+        btnIdiomaUK.setIcon(new javax.swing.ImageIcon(ClassLoader.getSystemResource("resources/uk_flag.gif")));
 
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
