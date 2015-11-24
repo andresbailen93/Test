@@ -27,17 +27,17 @@ public class VistaProfesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        etqVistaProfesor = new javax.swing.JLabel();
+        btnAnadirUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Vista Profesor");
+        etqVistaProfesor.setText("Vista Profesor");
 
-        jButton1.setText("Añadir Alumno");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAnadirUsuario.setText("Añadir Usuario");
+        btnAnadirUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAnadirUsuarioActionPerformed(evt);
             }
         });
 
@@ -47,29 +47,29 @@ public class VistaProfesor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(143, 143, 143)
-                .addComponent(jLabel1)
+                .addComponent(etqVistaProfesor)
                 .addContainerGap(170, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnAnadirUsuario)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addComponent(etqVistaProfesor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnAnadirUsuario)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAnadirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAnadirUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,7 +107,12 @@ public class VistaProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JButton btnAnadirUsuario;
+    private javax.swing.JLabel etqVistaProfesor;
     // End of variables declaration//GEN-END:variables
 }
+///AÑADIR USUARIO
+///AÑADIR TEST de profesor a NUEVOTEST
+/// CREAR PREGUNTA
+///LISTA TODOS
+///
