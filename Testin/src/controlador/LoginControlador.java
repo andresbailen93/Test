@@ -33,8 +33,8 @@ public class LoginControlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("LOGIN")) {
             
-            Usuario u = usuario.logginUser(vistaLogin.user.getText().toString(), vistaLogin.pass.getText().toString());
-            System.out.println(u);
+            Usuario u = usuario.logginUser(vistaLogin.user.getText(), vistaLogin.pass.getText());//He quitado los toString era redundante
+            //System.out.println(u);
             if (u != null) {
                 
                 if (u.isEs_profesor()) {
