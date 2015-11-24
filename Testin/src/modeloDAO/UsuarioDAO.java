@@ -36,7 +36,7 @@ public class UsuarioDAO {
      *
      * @param usua Objeto de la clase Usuario.
      */
-    public void InsertaUsuario(Usuario usua) {
+    public void insertaUsuario(Usuario usua) {
 
         if (null == psSentencia) {
             try {
@@ -66,15 +66,16 @@ public class UsuarioDAO {
      * @return Devuelve un true si son correctos los datos introducidos o false
      * si no son correctos.
      */
-    public boolean LogginUser(String dni, String password) {
+    public Usuario logginUser(String dni, String password) {
         String userdni = null;
         String userpass = null;
         boolean loggin = false;
+        Usuario user = null;
 
         if (psSentencia == null) {
             try {
                 try {
-                    psSentencia = con.prepareStatement("SELECT DNI,PASSWORD FROM USUARIO WHERE DNI=?");
+                    psSentencia = con.prepareStatement("SELECT * FROM USUARIO WHERE DNI=?");
                     psSentencia.clearParameters();
                     psSentencia.setString(1, dni);
                 } catch (SQLException ex) {
@@ -82,6 +83,9 @@ public class UsuarioDAO {
                 }
                 ResultSet rs = psSentencia.executeQuery();
                 while (rs.next()) {
+                    user = new Usuario(rs.getString("DNI"), rs.getString("NOMBRE"),
+                            rs.getString("APELLIDOS"), rs.getString("CONTRASEÑA"),
+                            rs.getBoolean("ES_PROF"));
                     userdni = rs.getString("dni");
                     userpass = rs.getString("password");
                 }
@@ -93,9 +97,10 @@ public class UsuarioDAO {
 
             if (dni.equals(userdni) && password.equals(userpass)) {
                 loggin = true;
+                return user;
             }
         }
-        return loggin;
+        return null;
     }
 
     /**
