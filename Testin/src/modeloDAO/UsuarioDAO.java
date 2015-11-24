@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Usuario;
 
 /**
  *
@@ -19,90 +20,132 @@ import java.util.logging.Logger;
 public class UsuarioDAO {
 
     private Connection con = null;
-    PreparedStatement psSentencia=null;
+    PreparedStatement psSentencia = null;
 
+    /**
+     * Constructor por defecto que instancia la conexion con la base de datos.
+     */
     public UsuarioDAO() {
 
         con = new ConexionOrcl().conecta();
     }
-    public void InsertaUsuario(String dni,String nombre, String apellidos, String password, boolean es_profesor){
 
-            if(null==psSentencia){
-                try {
-                    psSentencia=con.prepareStatement("INSERT INTO USUARIO (DNI,NOMBRE,APELLIDOS,PASSWORD,ES_PROFESOR) VALUES (?,?,?,?,?)");
-                    psSentencia.clearParameters();
-                    psSentencia.setString(1,dni);
-                    psSentencia.setString(2, nombre);
-                    psSentencia.setString(3, apellidos);
-                    psSentencia.setString(4,password);
-                    psSentencia.setBoolean(5,es_profesor);
-                    psSentencia.executeUpdate();
-                    
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }finally{
-                psSentencia=null;
-                }
-            
+    /**
+     * Funcion que inserta un usuario en la base de datos usando
+     * PreparedStatement
+     *
+     * @param usua Objeto de la clase Usuario.
+     */
+    public void InsertaUsuario(Usuario usua) {
+
+        if (null == psSentencia) {
+            try {
+                psSentencia = con.prepareStatement("INSERT INTO USUARIO (DNI,NOMBRE,APELLIDOS,PASSWORD,ES_PROFESOR) VALUES (?,?,?,?,?)");
+                psSentencia.clearParameters();
+                psSentencia.setString(1, usua.getDni());
+                psSentencia.setString(2, usua.getNombre());
+                psSentencia.setString(3, usua.getApellidos());
+                psSentencia.setString(4, usua.getContraseña());
+                psSentencia.setBoolean(5, usua.isEs_profesor());
+                psSentencia.executeUpdate();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
+
         }
     }
-    
-    
-    public boolean LogginUser(String dni, String password){
+/**
+ * Funcion que comprueba el loggin de un usuario
+ * @param dni DNI de un usuario
+ * @param password Contraseña del usuario
+ * @return Devuelve un true si son correctos los datos introducidos o false si no son correctos.
+ */
+    public boolean LogginUser(String dni, String password) {
         String userdni = null;
         String userpass = null;
-        boolean loggin=false;
-        
-        if(psSentencia==null){
+        boolean loggin = false;
+
+        if (psSentencia == null) {
             try {
                 try {
-                    psSentencia=con.prepareStatement("SELECT DNI,PASSWORD FROM USUARIO WHERE DNI=?");
+                    psSentencia = con.prepareStatement("SELECT DNI,PASSWORD FROM USUARIO WHERE DNI=?");
                     psSentencia.clearParameters();
-                    psSentencia.setString(1,dni);
+                    psSentencia.setString(1, dni);
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                ResultSet rs=psSentencia.executeQuery();
-                while(rs.next()){
-                    userdni=rs.getString("dni");
-                    userpass=rs.getString("password");
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    userdni = rs.getString("dni");
+                    userpass = rs.getString("password");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
- 
-            if(dni.equals(userdni) && password.equals(userpass)){
-                loggin=true;
+
+            if (dni.equals(userdni) && password.equals(userpass)) {
+                loggin = true;
             }
         }
         return loggin;
     }
-    
-    
-    
-    public boolean isProfesor(String dni){
-        Boolean isprofesor=false;
-         if(psSentencia==null){
+/**
+ * Funcion que comprueba si un usuario es profesor.
+ * @param user Objecto de la clase Usuario.
+ * @return Devuelve true si es profesor y false en otro caso.
+ */
+    public boolean isProfesor(Usuario user) {
+        Boolean isprofesor = false;
+        if (psSentencia == null) {
             try {
                 try {
-                    psSentencia=con.prepareStatement("SELECT ES_PROFESOR FROM USUARIO WHERE DNI=?");
+                    psSentencia = con.prepareStatement("SELECT ES_PROFESOR FROM USUARIO WHERE DNI=?");
                     psSentencia.clearParameters();
-                    psSentencia.setString(1,dni);
+                    psSentencia.setString(1, user.getDni());
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                ResultSet rs=psSentencia.executeQuery();
-                while(rs.next()){
-                    isprofesor=rs.getBoolean("ES_PROFESOR");
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    isprofesor = rs.getBoolean("ES_PROFESOR");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }        
-    }
- return isprofesor;
+            }
+        }
+        return isprofesor;
 
-}
-    
-    
+    }
+/**
+ * Funcion que devuelve un objeto Usuario.
+ * @param dni DNI del objeto que se quiere obtener la informacion
+ * @return Devuelve un Objeto de la clase Usuario.
+ */
+    public Usuario devuelveUsuario(String dni) {
+        Usuario user = null;
+        if (psSentencia == null) {
+            try {
+                try {
+                    psSentencia = con.prepareStatement("SELECT * FROM USUARIO WHERE DNI=?");
+                    psSentencia.clearParameters();
+                    psSentencia.setString(1, dni);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    user = new Usuario(rs.getString("dni"), rs.getString("nombre"),
+                            rs.getString("password"), rs.getString("contraseña"),
+                            rs.getBoolean("es_prof"));
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return user;
+    }
 }

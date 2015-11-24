@@ -16,6 +16,11 @@ public class Usuario {
     private String apellidos;
     private String password;
     private Boolean es_profesor;
+/**
+ * Constructor por defecto.
+ */
+    public Usuario() {
+    }
 
     
     /**
