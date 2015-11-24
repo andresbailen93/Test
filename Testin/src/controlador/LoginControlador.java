@@ -38,12 +38,10 @@ public class LoginControlador implements ActionListener {
             if (u != null) {
                 
                 if (u.isEs_profesor()) {
-                    VistaProfesor vp = new VistaProfesor();
-                    vp.setVisible(true);
+                    ProfesorControlador pc= new ProfesorControlador(usuario, new VistaProfesor());
                 }
                 else {
-                    
-                    AlumnoControlador ac = new AlumnoControlador(new VistaAlumno(u.getNombre()));
+                    AlumnoControlador ac = new AlumnoControlador(new VistaAlumno(u.getNombre()));    
                 }
             }
             else {
