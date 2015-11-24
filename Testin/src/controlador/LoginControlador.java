@@ -10,6 +10,7 @@ import Vistas.VistaLogin;
 import Vistas.VistaProfesor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import modelo.Usuario;
 import modeloDAO.UsuarioDAO;
 
@@ -44,6 +45,9 @@ public class LoginControlador implements ActionListener {
                     VistaAlumno va = new VistaAlumno(u.getNombre());
                     va.setVisible(true);
                 }
+            }
+            else {
+                JOptionPane.showMessageDialog(vistaLogin, "Usuario/Contraseña incorrecta",null,JOptionPane.ERROR_MESSAGE);
             }
         }
     }

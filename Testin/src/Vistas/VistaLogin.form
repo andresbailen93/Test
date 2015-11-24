@@ -58,7 +58,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnConectar" min="-2" pref="37" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -157,15 +157,15 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnIdiomaES">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/Flag_of_Spain_W22H13px.png"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/resources/Flag_of_Spain_W22H13px.png&quot;))" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnIdiomaUK">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/uk_flag.gif"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/resources/uk_flag.gif&quot;))" type="code"/>
             </Property>
           </Properties>
         </Component>

@@ -65,9 +65,9 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario:");
 
-        btnIdiomaES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Flag_of_Spain_W22H13px.png"))); // NOI18N
+        btnIdiomaES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Flag_of_Spain_W22H13px.png")));
 
-        btnIdiomaUK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/uk_flag.gif"))); // NOI18N
+        btnIdiomaUK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/uk_flag.gif")));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +155,7 @@ public class VistaLogin extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
