@@ -30,43 +30,62 @@ public class RespuestaDAO {
     public RespuestaDAO() {
         con = new ConexionOrcl().conecta();
     }
-    public void insertaRespuesta(Respuesta resp){
-        if(psSentencia==null){
+/**
+ * Funcion que inserta una Respuesta en la base de datos.
+ * @param resp Objeto de la case Respuesta.
+ */
+    public void insertaRespuesta(Respuesta resp) {
+        if (psSentencia == null) {
             try {
                 psSentencia = con.prepareStatement("INSERT INTO RESPUESTA (ID_RESPUESTA,TEXTO,CORRECTA,ID_PREGUNTA) VALUES (?,?,?,?)");
                 psSentencia.clearParameters();
-                psSentencia.setInt(1,resp.getId_respuesta());
-                psSentencia.setString(2,resp.getTexto());
-                psSentencia.setBoolean(3,resp.isCorrecta());
-                psSentencia.setInt(4,resp.getId_pregunta());
+                psSentencia.setInt(1, resp.getId_respuesta());
+                psSentencia.setString(2, resp.getTexto());
+                psSentencia.setBoolean(3, resp.isCorrecta());
+                psSentencia.setInt(4, resp.getId_pregunta());
                 psSentencia.executeUpdate();
 
             } catch (SQLException ex) {
                 Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                psSentencia=null;
+            } finally {
+                psSentencia = null;
             }
 
         }
-        
+
     }
-    public ArrayList<Respuesta> devuelveRespuesta(Pregunta preg){
-        if(psSentencia==null){
+/**
+ * Funcion que devuelve un ArrayList con las posibles respuestas.
+ * @param preg Objeto de la clase Pregunta.
+ * @return ArrayList con las posibles respuestas.
+ */
+    public ArrayList<Respuesta> devuelveRespuesta(Pregunta preg) {
+        ArrayList<Respuesta> lista_respuesta = new ArrayList<>();
+
+        if (psSentencia == null) {
             try {
-                psSentencia = con.prepareStatement("SELECT * FROM RESPUESTA WHERE ID_PREGUNTA=?");
-                psSentencia.clearParameters();
-                psSentencia.setInt(1, preg.getId_pregunta());
-            } catch (SQLException ex) {
-                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ResultSet rs= psSentencia.executeQuery();
-            while (rs.next()) {
-             = new Usuario(rs.getString("dni"), rs.getString("nombre"),
-                            rs.getString("password"), rs.getString("contraseña"),
-                            rs.getBoolean("es_prof"));
+                try {
+                    psSentencia = con.prepareStatement("SELECT * FROM RESPUESTA WHERE ID_PREGUNTA=?");
+                    psSentencia.clearParameters();
+                    psSentencia.setInt(1, preg.getId_pregunta());
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Respuesta respuesta;
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    respuesta = new Respuesta(rs.getInt("ID_RESPUESTA"),
+                            rs.getString("TEXTO"), rs.getBoolean("CORRECTA"),
+                            rs.getInt("ID_PREGUNTA"));
+                    lista_respuesta.add(respuesta);
 
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
         }
-        
+        return lista_respuesta;
     }
 }
