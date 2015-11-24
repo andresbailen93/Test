@@ -16,6 +16,7 @@ public class Test {
     private int duracion;
     private int resta;
     private String dni;
+    private Boolean activo;
 
     /**
      * Constructor por defecto.
@@ -30,15 +31,17 @@ public class Test {
      * @param nombre Nombre del test
      * @param duracion Duracion en segundos del test
      * @param resta Indica si 0 si al fallar no resta, 1 resta lo mismo que al
-     * acertar la pregunta, 2 resta la mitad, 3 resta la tercera parte
+     *  la pregunta, 2 resta la mitad, 3 resta la tercera parte
      * @param dni Indica el DNI de la persona que esta haciendo el test.
+     * @param activo 
      */
-    public Test(int id_test, String nombre, int duracion, int resta, String dni) {
+    public Test(int id_test, String nombre, int duracion, int resta, String dni,Boolean activo) {
         this.id_test = id_test;
         this.nombre = nombre;
         this.duracion = duracion;
         this.resta = resta;
         this.dni = dni;
+        this.activo=activo;
     }
 
     /**
@@ -85,6 +88,13 @@ public class Test {
     public String getDni() {
         return dni;
     }
+    /**
+     * Funcion que devuelve si un test esta activo o no.
+     * @return boolean indica si test esta activo o no
+     */
+    public Boolean getActivo(){
+        return activo;
+    }
 
     /**
      * Funcion que inserta el identificador del test.
@@ -129,6 +139,14 @@ public class Test {
      */
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    /**
+     * Funcion que inserta el estado de un test (Activo=1, No activo=0).
+     * @param activo Boolean que indica el estado del test.
+     */
+    public void setStart(Boolean activo){
+        this.activo=activo;
     }
 
 }
