@@ -84,6 +84,8 @@ public class UsuarioDAO {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                psSentencia=null;
             }
 
             if (dni.equals(userdni) && password.equals(userpass)) {
@@ -114,6 +116,8 @@ public class UsuarioDAO {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                psSentencia=null;
             }
         }
         return isprofesor;
@@ -144,6 +148,8 @@ public class UsuarioDAO {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                psSentencia=null;
             }
         }
         return user;
