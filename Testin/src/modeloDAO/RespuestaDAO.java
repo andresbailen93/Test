@@ -30,10 +30,12 @@ public class RespuestaDAO {
     public RespuestaDAO() {
         con = new ConexionOrcl().conecta();
     }
-/**
- * Funcion que inserta una Respuesta en la base de datos.
- * @param resp Objeto de la case Respuesta.
- */
+
+    /**
+     * Funcion que inserta una Respuesta en la base de datos.
+     *
+     * @param resp Objeto de la case Respuesta.
+     */
     public void insertaRespuesta(Respuesta resp) {
         if (psSentencia == null) {
             try {
@@ -54,11 +56,13 @@ public class RespuestaDAO {
         }
 
     }
-/**
- * Funcion que devuelve un ArrayList con las posibles respuestas.
- * @param preg Objeto de la clase Pregunta.
- * @return ArrayList con las posibles respuestas.
- */
+
+    /**
+     * Funcion que devuelve un ArrayList con las posibles respuestas.
+     *
+     * @param preg Objeto de la clase Pregunta.
+     * @return ArrayList con las posibles respuestas.
+     */
     public ArrayList<Respuesta> devuelveRespuesta(Pregunta preg) {
         ArrayList<Respuesta> lista_respuesta = new ArrayList<>();
 
@@ -87,5 +91,11 @@ public class RespuestaDAO {
             }
         }
         return lista_respuesta;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        con.close();
     }
 }

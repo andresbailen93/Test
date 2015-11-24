@@ -57,12 +57,15 @@ public class UsuarioDAO {
 
         }
     }
-/**
- * Funcion que comprueba el loggin de un usuario
- * @param dni DNI de un usuario
- * @param password Contraseña del usuario
- * @return Devuelve un true si son correctos los datos introducidos o false si no son correctos.
- */
+
+    /**
+     * Funcion que comprueba el loggin de un usuario
+     *
+     * @param dni DNI de un usuario
+     * @param password Contraseña del usuario
+     * @return Devuelve un true si son correctos los datos introducidos o false
+     * si no son correctos.
+     */
     public boolean LogginUser(String dni, String password) {
         String userdni = null;
         String userpass = null;
@@ -84,8 +87,8 @@ public class UsuarioDAO {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                psSentencia=null;
+            } finally {
+                psSentencia = null;
             }
 
             if (dni.equals(userdni) && password.equals(userpass)) {
@@ -94,11 +97,13 @@ public class UsuarioDAO {
         }
         return loggin;
     }
-/**
- * Funcion que comprueba si un usuario es profesor.
- * @param user Objecto de la clase Usuario.
- * @return Devuelve true si es profesor y false en otro caso.
- */
+
+    /**
+     * Funcion que comprueba si un usuario es profesor.
+     *
+     * @param user Objecto de la clase Usuario.
+     * @return Devuelve true si es profesor y false en otro caso.
+     */
     public boolean isProfesor(Usuario user) {
         Boolean isprofesor = false;
         if (psSentencia == null) {
@@ -116,18 +121,20 @@ public class UsuarioDAO {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                psSentencia=null;
+            } finally {
+                psSentencia = null;
             }
         }
         return isprofesor;
 
     }
-/**
- * Funcion que devuelve un objeto Usuario.
- * @param dni DNI del objeto que se quiere obtener la informacion
- * @return Devuelve un Objeto de la clase Usuario.
- */
+
+    /**
+     * Funcion que devuelve un objeto Usuario.
+     *
+     * @param dni DNI del objeto que se quiere obtener la informacion
+     * @return Devuelve un Objeto de la clase Usuario.
+     */
     public Usuario devuelveUsuario(String dni) {
         Usuario user = null;
         if (psSentencia == null) {
@@ -148,10 +155,16 @@ public class UsuarioDAO {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                psSentencia=null;
+            } finally {
+                psSentencia = null;
             }
         }
         return user;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        con.close();
     }
 }

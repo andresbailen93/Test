@@ -25,77 +25,69 @@ public class CategoriaDAO {
     private Connection con = null;
     PreparedStatement pstmt = null;
     Statement stmt = null;
-    
-    
+
     /**
-     * Contructor de la clase CategoríaDAO, en el que al atributo de tipo Connection se asigna una conexión llamando a la clase ConexiónOrcl
+     * Contructor de la clase CategoríaDAO, en el que al atributo de tipo
+     * Connection se asigna una conexión llamando a la clase ConexiónOrcl
      */
     public CategoriaDAO() {
-         this.con = new ConexionOrcl().conecta();
+        this.con = new ConexionOrcl().conecta();
     }
-    
+
     /**
      * Procedimiento que inserta una nueva categoría en el BBDD
+     *
      * @param cat Recibe como parámetro un objeto de la clase Categoría
      */
-    public void InsertarCategoria(Categoria cat){
-        
+    public void InsertarCategoria(Categoria cat) {
+
         try {
             pstmt = con.prepareStatement("INSERT INTO CATEGORIA VALUES (?,?)");
             pstmt.clearParameters();
-            pstmt.setString(2,cat.getNombre());
+            pstmt.setString(2, cat.getNombre());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            pstmt=null;
+        } finally {
+            pstmt = null;
         }
-        
+
     }
-    
+
     /**
-     * Función que devuelve una lista con todos los objetos categorias que existen en la base de datos
+     * Función que devuelve una lista con todos los objetos categorias que
+     * existen en la base de datos
+     *
      * @return ArrayList de tipos Categoria
      */
-    public ArrayList<Categoria> ListarCategorias(){
-        
+    public ArrayList<Categoria> ListarCategorias() {
+
         ArrayList<Categoria> lista_categorias = new ArrayList<>();
-        
+
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM CATEGORIA");
-            
-            Categoria cat;
-            
-            while(rs.next()){
 
-                    cat = new Categoria(rs.getInt("ID_CATEGORIA"),rs.getString("NOMBRE"));
-                    lista_categorias.add(cat);
-                }
-                
-            
+            Categoria cat;
+
+            while (rs.next()) {
+
+                cat = new Categoria(rs.getInt("ID_CATEGORIA"), rs.getString("NOMBRE"));
+                lista_categorias.add(cat);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            stmt=null;
+        } finally {
+            stmt = null;
         }
-        
-       return lista_categorias; 
+
+        return lista_categorias;
     }
-    
-    
+
     @Override
-    protected void finalize() {
-        try {
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    protected void finalize() throws Throwable {
+        super.finalize();
+        con.close();
     }
-    
-    
-    
-    
-    
-    
 }
