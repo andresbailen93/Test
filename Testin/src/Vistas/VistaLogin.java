@@ -61,13 +61,19 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
+        pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Contraseña:");
 
         jLabel1.setText("Usuario:");
 
         btnIdiomaES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Flag_of_Spain_W22H13px.png")));
-
         btnIdiomaUK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/uk_flag.gif")));
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,6 +170,14 @@ public class VistaLogin extends javax.swing.JFrame {
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userActionPerformed
+
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passActionPerformed
+
+    private void btnIdiomaESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdiomaESActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIdiomaESActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
