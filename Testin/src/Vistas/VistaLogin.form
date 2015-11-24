@@ -69,6 +69,7 @@
         <Property name="text" type="java.lang.String" value="Conectar" preCode="&#xa;"/>
       </Properties>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VistaLogin_btnConectar"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
