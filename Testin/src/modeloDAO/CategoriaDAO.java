@@ -90,10 +90,6 @@ public class CategoriaDAO {
             con.close();
         
     }
-    
-    
-    
-    
-    
+   
     
 }
