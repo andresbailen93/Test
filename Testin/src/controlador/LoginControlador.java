@@ -42,8 +42,8 @@ public class LoginControlador implements ActionListener {
                     vp.setVisible(true);
                 }
                 else {
-                    VistaAlumno va = new VistaAlumno(u.getNombre());
-                    va.setVisible(true);
+                    
+                    AlumnoControlador ac = new AlumnoControlador(new VistaAlumno(u.getNombre()));
                 }
             }
             else {
