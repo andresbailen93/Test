@@ -21,42 +21,42 @@ public class ProfesorControlador implements ActionListener {
 
     final private UsuarioDAO usuario;
     final private VistaProfesor vistaProfesor;
-    final private VistaNuevoUsuario vnu;
+    private VistaNuevoUsuario vnu=null;
 
     public ProfesorControlador(UsuarioDAO u, VistaProfesor vp) {
         usuario = (u == null) ? new UsuarioDAO() : u;
         vistaProfesor = vp;
         vistaProfesor.setVisible(true);
         initEvents();
-        vnu = null;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("ANADEUSUARIO")) {
-            System.out.println("ENTRO");
+        if (e.getActionCommand().equals("ADDEUSUARIO")) {
             aniadeVistaUsuario();
         }
-        if (e.getActionCommand().equals("ANIADE")) {
+        if (e.getActionCommand().equals("ADDUSER")) {
             aniadeUsuario();
         }
     }
 
     private void initEvents() {
-        vistaProfesor.btnAnadirUsuario.setActionCommand("ANADEUSUARIO");
+        vistaProfesor.btnAnadirUsuario.setActionCommand("ADDEUSUARIO");
         vistaProfesor.btnAnadirUsuario.addActionListener(this);
-        vnu.btnAnadir.setActionCommand("ANIADE");
+        vnu.btnAnadir.setActionCommand("ADDUSER");
         vnu.btnAnadir.addActionListener(this);//REVISAAaaaaaaaaaaR
-
     }
 
     private void aniadeVistaUsuario() {
         vistaProfesor.setVisible(false);
-        vnu.setVisible(true);
+        vnu = new VistaNuevoUsuario();
+        vnu.setVisible(true); 
     }
 
     private void aniadeUsuario() {
         boolean es_prof = false;
+        System.out.println("ENTROanieadeUsuarioTAMBIEN");
+
         if (vnu.rbSiPermiso.isSelected()) {
             es_prof = true;
         }
@@ -64,6 +64,8 @@ public class ProfesorControlador implements ActionListener {
                 vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
                 vnu.tfPassword.getText(), es_prof);
         usuario.insertaUsuario(user);
+        vnu.setVisible(false);
+        vistaProfesor.setVisible(true);
 
     }
 
