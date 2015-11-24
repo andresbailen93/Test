@@ -159,21 +159,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnIdiomaES">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/resources/Flag_of_Spain_W22H13px.png&quot;))" type="code"/>
-            </Property>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIdiomaESActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnIdiomaUK">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/resources/uk_flag.gif&quot;))" type="code"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
