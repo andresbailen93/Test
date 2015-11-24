@@ -71,6 +71,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", password=" + password + ", es_profesor=" + es_profesor + '}';
+    }
+
     /**
      * Funcion que devuelve los apellidos de un usuario
      * @return Apellidos del usuario

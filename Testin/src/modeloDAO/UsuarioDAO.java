@@ -67,8 +67,8 @@ public class UsuarioDAO {
      * si no son correctos.
      */
     public Usuario logginUser(String dni, String password) {
-        String userdni = null;
-        String userpass = null;
+        String userdni = dni;
+        String userpass = password;
         boolean loggin = false;
         Usuario user = null;
 
@@ -78,13 +78,14 @@ public class UsuarioDAO {
                     psSentencia = con.prepareStatement("SELECT * FROM USUARIO WHERE DNI=?");
                     psSentencia.clearParameters();
                     psSentencia.setString(1, dni);
+ 
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ResultSet rs = psSentencia.executeQuery();
                 while (rs.next()) {
                     user = new Usuario(rs.getString("DNI"), rs.getString("NOMBRE"),
-                            rs.getString("APELLIDOS"), rs.getString("CONTRASEÑA"),
+                            rs.getString("APELLIDOS"), rs.getString("PASSWORD"),
                             rs.getBoolean("ES_PROF"));
                     userdni = rs.getString("dni");
                     userpass = rs.getString("password");
