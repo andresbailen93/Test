@@ -14,8 +14,8 @@ public class Usuario {
     private String dni;
     private String nombre;
     private String apellidos;
-    private String contraseña;
-    private boolean es_profesor;
+    private String password;
+    private Boolean es_profesor;
 
     
     /**
@@ -30,7 +30,7 @@ public class Usuario {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.contraseña = contraseña;
+        this.password = contraseña;
         this.es_profesor = es_profesor;
     }
 
@@ -87,7 +87,7 @@ public class Usuario {
      * @return Contraseña del usuario
      */
     public String getContraseña() {
-        return contraseña;
+        return password;
     }
 
     /**
@@ -95,14 +95,14 @@ public class Usuario {
      * @param contraseña Recibe como parámetro la contraseña del usuario
      */
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.password = contraseña;
     }
 
     /**
      * Funcion que devuelve si el usuario es profesor o no
      * @return True si es profesor o false si es alumno
      */
-    public boolean isEs_profesor() {
+    public Boolean isEs_profesor() {
         return es_profesor;
     }
 
