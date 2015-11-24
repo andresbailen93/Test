@@ -114,6 +114,13 @@ public class ExamenDAO {
         return lista_examenes;  
     
     }
+    
+    @Override
+    protected void finalize() throws Throwable {
+            super.finalize();
+            con.close();
+        
+    }
    
     
     

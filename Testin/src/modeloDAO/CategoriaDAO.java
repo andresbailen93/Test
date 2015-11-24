@@ -85,12 +85,10 @@ public class CategoriaDAO {
     
     
     @Override
-    protected void finalize() {
-        try {
+    protected void finalize() throws Throwable {
+            super.finalize();
             con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
     
