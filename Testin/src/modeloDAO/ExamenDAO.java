@@ -66,7 +66,7 @@ public class ExamenDAO {
      * @param test Recibe como parámetro un objeto Test
      * @return Devuelve un ArrayList de tipo Examen
      */
-    public ArrayList<Examen> devolverNotas(Test test){
+    public ArrayList<Examen> devolverExamenes(Test test){
       
        ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
        
