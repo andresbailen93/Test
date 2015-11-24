@@ -28,6 +28,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -53,6 +54,8 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton2);
         buttonGroup1.add(jRadioButton3);
         buttonGroup1.add(jRadioButton4);
+
+        jButton4.setText("jButton4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,7 +150,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("*Seleccione la respuesta correcta.");
+        jLabel4.setText("*Debe marcar la respuesta correcta.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -307,6 +310,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1_tematica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

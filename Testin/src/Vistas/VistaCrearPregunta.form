@@ -8,6 +8,11 @@
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="buttonGroup1.add(jRadioButton1);&#xa;buttonGroup1.add(jRadioButton2);&#xa;buttonGroup1.add(jRadioButton3);&#xa;buttonGroup1.add(jRadioButton4);"/>
       </AuxValues>
     </Component>
+    <Component class="javax.swing.JButton" name="jButton4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton4"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -300,7 +305,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="*Seleccione la respuesta correcta."/>
+            <Property name="text" type="java.lang.String" value="*Debe marcar la respuesta correcta."/>
           </Properties>
         </Component>
       </SubComponents>
