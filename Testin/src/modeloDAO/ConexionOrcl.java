@@ -9,28 +9,31 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author inftel23
+ * @author Andres Bailen Jimenez
  */
 public class ConexionOrcl {
+    
+    /**
+     * Funcion conecta, que establece la conexion con la base de datos de oracle
+     * cogiendo los parametros de un fichero .properties
+     * @return devuelve un objeto de la clase Connection
+     */
 
     public Connection conecta() {
         Connection con = null;
         try {
 
             Properties pr1 = new Properties();
-            FileInputStream conexionconf = new FileInputStream("./conexionconf.properties");
-            pr1.load(conexionconf);
-            conexionconf.close();
+            try (FileInputStream conexionconf = new FileInputStream("./conexionconf.properties")) {
+                pr1.load(conexionconf);
+            }
             String conexion="jdbc:oracle:"+pr1.getProperty("tipoConexion")+
                     ":"+pr1.getProperty("user")+"/"+pr1.getProperty("pass")+"@"
                     +pr1.getProperty("host")+":"+pr1.getProperty("port")+":"
@@ -53,6 +56,10 @@ public class ConexionOrcl {
         }
         return con;
     }
+    /**
+     * Funcion que desconecta la conexion con la base de datos.
+     * @param descon Como parametro tiene un objeto de la clase Connection para que cierre la conexion de ese objeto.
+     */
     
     public void desconecta(Connection descon){
         try {
