@@ -102,9 +102,7 @@ public class TestDAO {
         if (psSentencia == null) {
             try {
                 try {
-                    psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ");
-                    psSentencia.clearParameters();
-                    psSentencia.setString(1, user.getDni());
+                    psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ACTIVO=1");
                 } catch (SQLException ex) {
                     Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -114,7 +112,7 @@ public class TestDAO {
                     tester = new Test(rs.getInt("ID_TEST"), rs.getString("NOMBRE"),
                             rs.getInt("DURACION"), rs.getInt("RESTA"),
                             rs.getString("DNI"), rs.getBoolean("ACTIVO"));
-                    lista_test.add(tester);
+                    listaActivos_test.add(tester);
 
                 }
             } catch (SQLException ex) {
@@ -123,7 +121,7 @@ public class TestDAO {
                 psSentencia = null;
             }
         }
-        return lista_test;
+        return listaActivos_test;
 
     }
 
