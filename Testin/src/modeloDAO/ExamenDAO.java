@@ -88,7 +88,32 @@ public class ExamenDAO {
     
     }
     
+    /**
+     * Función que devuelve una lista de Examenes que se corresponden con un determinado usuario
+     * @param usser Recibe como parámetro un objeto Usuario
+     * @return Devuelve un ArrayList de tipo Examen
+     */
+    public ArrayList<Examen> devolverExamenesAlumno(Usuario usser){
+      
+       ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
+       
+        try {
+            stmt=con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE DNI="+usser.getDni());
+            Examen exam;
+            
+            while(rs.next()){
+                exam = new Examen(rs.getString("DNI"),rs.getInt("ID_TEST"),rs.getDate("FECHA"),rs.getInt("ACIERTOS"),rs.getInt("FALLOS"),rs.getDouble("NOTA"));
+                lista_examenes.add(exam);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ExamenDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+
+        return lista_examenes;  
     
+    }
    
     
     
