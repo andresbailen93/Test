@@ -162,6 +162,11 @@ public class UsuarioDAO {
         return user;
     }
 
+    /**
+     * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
+     *
+     * @throws Throwable
+     */
     @Override
     protected void finalize() throws Throwable {
         super.finalize();

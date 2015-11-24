@@ -27,102 +27,108 @@ import modelo.Usuario;
  * @author andresbailen93
  */
 public class ExamenDAO {
-    
+
     private Connection con = null;
-    PreparedStatement pstmt=null;
+    PreparedStatement pstmt = null;
     Statement stmt = null;
 
     /**
-     * Constructor de la clase ExamenDAO, en el que al atributo de tipo Connection se asigna una conexión llamando a la clase ConexiónOrcl
+     * Constructor de la clase ExamenDAO, en el que al atributo de tipo
+     * Connection se asigna una conexión llamando a la clase ConexiónOrcl
      */
     public ExamenDAO() {
         con = new ConexionOrcl().conecta();
     }
-    
+
     /**
      * Procedimiento que introduce un examen en la Base de datos
+     *
      * @param exam Recibe como parámetro un objeto de la clase Examen
      */
-    public void crearExamen(Examen exam){
+    public void crearExamen(Examen exam) {
         try {
             pstmt = con.prepareStatement("INSERT INTO EXAMEN VALUES (?,?,?,?,?,?)");
             pstmt.clearParameters();
-            pstmt.setString(1,exam.getDni());
-            pstmt.setDate(3,exam.getFecha());
-            pstmt.setInt(4,exam.getAciertos());
-            pstmt.setInt(5,exam.getFallos());
-            pstmt.setDouble(6,exam.getNota());
+            pstmt.setString(1, exam.getDni());
+            pstmt.setDate(3, exam.getFecha());
+            pstmt.setInt(4, exam.getAciertos());
+            pstmt.setInt(5, exam.getFallos());
+            pstmt.setDouble(6, exam.getNota());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ExamenDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            pstmt=null;
+        } finally {
+            pstmt = null;
         }
-   
+
     }
-    
+
     /**
-     * Función que devuelve una lista de objetos Examenes que se corresponden con un determinado TestID
+     * Función que devuelve una lista de objetos Examenes que se corresponden
+     * con un determinado TestID
+     *
      * @param test Recibe como parámetro un objeto Test
      * @return Devuelve un ArrayList de tipo Examen
      */
-    public ArrayList<Examen> devolverExamenes(Test test){
-      
-       ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
-       
+    public ArrayList<Examen> devolverExamenes(Test test) {
+
+        ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
+
         try {
-            stmt=con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE ID_TEST="+test.getId_test());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE ID_TEST=" + test.getId_test());
             Examen exam;
-            
-            while(rs.next()){
-                exam = new Examen(rs.getString("DNI"),rs.getInt("ID_TEST"),rs.getDate("FECHA"),rs.getInt("ACIERTOS"),rs.getInt("FALLOS"),rs.getDouble("NOTA"));
+
+            while (rs.next()) {
+                exam = new Examen(rs.getString("DNI"), rs.getInt("ID_TEST"), rs.getDate("FECHA"), rs.getInt("ACIERTOS"), rs.getInt("FALLOS"), rs.getDouble("NOTA"));
                 lista_examenes.add(exam);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ExamenDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
 
-        return lista_examenes;  
-    
+        return lista_examenes;
+
     }
-    
+
     /**
-     * Función que devuelve una lista de Examenes que se corresponden con un determinado usuario
+     * Función que devuelve una lista de Examenes que se corresponden con un
+     * determinado usuario
+     *
      * @param usser Recibe como parámetro un objeto Usuario
      * @return Devuelve un ArrayList de tipo Examen
      */
-    public ArrayList<Examen> devolverExamenesAlumno(Usuario usser){
-      
-       ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
-       
+    public ArrayList<Examen> devolverExamenesAlumno(Usuario usser) {
+
+        ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
+
         try {
-            stmt=con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE DNI="+usser.getDni());
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE DNI=" + usser.getDni());
             Examen exam;
-            
-            while(rs.next()){
-                exam = new Examen(rs.getString("DNI"),rs.getInt("ID_TEST"),rs.getDate("FECHA"),rs.getInt("ACIERTOS"),rs.getInt("FALLOS"),rs.getDouble("NOTA"));
+
+            while (rs.next()) {
+                exam = new Examen(rs.getString("DNI"), rs.getInt("ID_TEST"), rs.getDate("FECHA"), rs.getInt("ACIERTOS"), rs.getInt("FALLOS"), rs.getDouble("NOTA"));
                 lista_examenes.add(exam);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ExamenDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
 
-        return lista_examenes;  
-    
+        return lista_examenes;
+
     }
-    
+
+    /**
+     * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
+     *
+     * @throws Throwable
+     */
     @Override
     protected void finalize() throws Throwable {
-            super.finalize();
-            con.close();
-        
+        super.finalize();
+        con.close();
+
     }
-   
-    
-    
-    
+
 }

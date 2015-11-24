@@ -17,11 +17,12 @@ import modelo.Pregunta;
 import modelo.Test;
 
 /**
- *  Clase que gestiona las llamadas a la BD para la entidad Pregunta
+ * Clase que gestiona las llamadas a la BD para la entidad Pregunta
+ *
  * @author andresbailen93
  */
 public class PreguntaDAO {
-    
+
     private Connection con = null;
     PreparedStatement ps = null;
 
@@ -29,9 +30,10 @@ public class PreguntaDAO {
 
         con = new ConexionOrcl().conecta();
     }
-    
+
     /**
      * Método que agrega una nueva pregunta al sistema
+     *
      * @param p Pregunta
      */
     public void setPregunta(Pregunta p) {
@@ -43,11 +45,12 @@ public class PreguntaDAO {
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(PreguntaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+        }
     }
-    
+
     /**
      * Método que devuelve una pregunta dado su ID
+     *
      * @param id ID de la pregunta
      * @return Pregunta
      */
@@ -71,9 +74,10 @@ public class PreguntaDAO {
         }
         return p;
     }
-    
+
     /**
      * Método que devuelve una lista de preguntas dada una categoría
+     *
      * @param c Categoria
      * @return ArrayList de tipo Pregunta
      */
@@ -85,23 +89,24 @@ public class PreguntaDAO {
             ps.setInt(1, c.getId_categoria());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                 Pregunta p = new Pregunta(
+                Pregunta p = new Pregunta(
                         rs.getInt("ID_PREGUNTA"),
                         rs.getString("TEXTO"),
                         rs.getInt("ID_CATEGORIA"),
                         null
                 );
-                 listaPreguntas.add(p);
+                listaPreguntas.add(p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PreguntaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return listaPreguntas;
     }
-    
+
     /**
      * Método que devuelve las preguntas dado un test
+     *
      * @param t Test
      * @return ArrayList de tipo Pregunta
      */
@@ -122,7 +127,7 @@ public class PreguntaDAO {
                         rs.getInt("ID_CATEGORIA"),
                         null
                 );
-                 listaPreguntas.add(p);
+                listaPreguntas.add(p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PreguntaDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -130,12 +135,15 @@ public class PreguntaDAO {
         return listaPreguntas;
     }
 
+    /**
+     * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
+     *
+     * @throws Throwable
+     */
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
         con.close();
     }
-    
-    
-    
+
 }

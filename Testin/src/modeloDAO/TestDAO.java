@@ -94,6 +94,10 @@ public class TestDAO {
         }
         return lista_test;
     }
+    /**
+     * Funcion que devuelve todos los test de la base de datos que esten activos
+     * @return ArrayList con la lista de los test que estan activos
+     */
 
     public ArrayList<Test> devuelveTestActivos() {
         //DEVOLVER TEST CUYO VALOR ESTE ACTIVO.
@@ -124,7 +128,10 @@ public class TestDAO {
         return listaActivos_test;
 
     }
-
+/**
+ * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
+ * @throws Throwable 
+ */
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
