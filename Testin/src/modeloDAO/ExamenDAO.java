@@ -7,8 +7,10 @@ package modeloDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,22 +61,31 @@ public class ExamenDAO {
    
     }
     
-    
-    public void devolverNotas(Test test){
-       Map<String,Double> lista_notas = new TreeMap<String,Double>();
+    /**
+     * Función que devuelve una lista de objetos Examenes que se corresponden con un determinado TestID
+     * @param test Recibe como parámetro un objeto Test
+     * @return Devuelve un ArrayList de tipo Examen
+     */
+    public ArrayList<Examen> devolverNotas(Test test){
+      
+       ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
        
         try {
             stmt=con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM ")
+            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE ID_TEST="+test.getId_test());
+            Examen exam;
+            
+            while(rs.next()){
+                exam = new Examen(rs.getString("DNI"),rs.getInt("ID_TEST"),rs.getDate("FECHA"),rs.getInt("ACIERTOS"),rs.getInt("FALLOS"),rs.getDouble("NOTA"));
+                lista_examenes.add(exam);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ExamenDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
        
 
-          
-        
-        
-        
+        return lista_examenes;  
+    
     }
     
     
