@@ -6,6 +6,8 @@
 package controlador;
 
 import Vistas.VistaAlumno;
+import Vistas.VistaProfesor;
+import Vistas.VistaResultados;
 import Vistas.VistaSeleccionarTest;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,13 +29,23 @@ class AlumnoControlador implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("SELECCIONAR")){
+             
             
             VistaSeleccionarTest vst = new VistaSeleccionarTest();
             vst.setVisible(true);
+    
+            
+        }else if(e.getActionCommand().equals("RESULTADOS")){
+            
+            
+            VistaResultados vr = new VistaResultados(10);
+            vr.setVisible(true);
+           
         }
     }
 
     private void initEvents() {
+        
         va.btnSeleccionar.setActionCommand("SELECCIONAR");
         va.btnSeleccionar.addActionListener(this);
         va.btnResultados.setActionCommand("RESULTADOS");

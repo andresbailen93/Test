@@ -39,18 +39,8 @@ public class VistaAlumno extends javax.swing.JFrame {
         jLabel1.setText("Vista Alumno");
 
         btnSeleccionar.setText("Seleccionar Test");
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
-            }
-        });
 
         btnResultados.setText("Resultados");
-        btnResultados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResultadosActionPerformed(evt);
-            }
-        });
 
         hello_msg.setText("Bienvenido ");
 
@@ -89,14 +79,6 @@ public class VistaAlumno extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSeleccionarActionPerformed
-
-    private void btnResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnResultadosActionPerformed
 
     /**
      * @param args the command line arguments
