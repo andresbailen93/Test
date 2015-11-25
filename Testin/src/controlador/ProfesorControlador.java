@@ -6,6 +6,7 @@
 package controlador;
 
 import Vistas.VistaLogin;
+import Vistas.VistaNuevoTest;
 import Vistas.VistaNuevoUsuario;
 import Vistas.VistaProfesor;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ public class ProfesorControlador implements ActionListener {
     final private UsuarioDAO usuario;
     final private VistaProfesor vistaProfesor;
     private VistaNuevoUsuario vnu=null;
+    private VistaNuevoTest vnt=null;
 
     public ProfesorControlador(UsuarioDAO u, VistaProfesor vp) {
         usuario = (u == null) ? new UsuarioDAO() : u;
@@ -32,41 +34,60 @@ public class ProfesorControlador implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("ADDEUSUARIO")) {
-            aniadeVistaUsuario();
-        }
-        if (e.getActionCommand().equals("ADDUSER")) {
-            aniadeUsuario();
+        switch (e.getActionCommand()) {
+            case "ADDEUSUARIO":
+                aniadeVistaUsuario();
+                break;
+            case "ADD":
+                aniadeUsuario();
+                break;
+            case "ADDTEST":
+                aniadeNuevoTest();
+                break;
         }
     }
 
     private void initEvents() {
         vistaProfesor.btnAnadirUsuario.setActionCommand("ADDEUSUARIO");
         vistaProfesor.btnAnadirUsuario.addActionListener(this);
-        vnu.btnAnadir.setActionCommand("ADDUSER");
-        vnu.btnAnadir.addActionListener(this);//REVISAAaaaaaaaaaaR
+        vistaProfesor.btnAnadeTest.setActionCommand("ADDTEST");
+        vistaProfesor.btnAnadeTest.addActionListener(this);
+        vnu.btnAnadir.setActionCommand("ADD");
+        vnu.btnAnadir.addActionListener(this);
     }
 
     private void aniadeVistaUsuario() {
         vistaProfesor.setVisible(false);
-        vnu = new VistaNuevoUsuario();
-        vnu.setVisible(true); 
+        vnu= new VistaNuevoUsuario();
+        vnu.setVisible(true);
+        vnu.btnAnadir.setActionCommand("ADD");
+        vnu.btnAnadir.addActionListener(this);
+        
     }
 
     private void aniadeUsuario() {
-        boolean es_prof = false;
-        System.out.println("ENTROanieadeUsuarioTAMBIEN");
-
+        Boolean es_prof = false;
         if (vnu.rbSiPermiso.isSelected()) {
             es_prof = true;
         }
         Usuario user = new Usuario(vnu.tfDniUser.getText(),
                 vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
-                vnu.tfPassword.getText(), es_prof);
+                vnu.pfPassword.getText(), es_prof);
         usuario.insertaUsuario(user);
-        vnu.setVisible(false);
-        vistaProfesor.setVisible(true);
+        //vnu.setVisible(false);
+        vnu.tfNombre.setText("");
+        vnu.tfDniUser.setText("");
+        vnu.tfApellidos.setText("");
+        vnu.pfPassword.setText("");
 
+        vistaProfesor.setVisible(true);
+        }
+    private void aniadeNuevoTest(){
+        vistaProfesor.setVisible(false);
+        vnt=new VistaNuevoTest();
+        vnt.setVisible(true);
+        
     }
+    
 
 }
