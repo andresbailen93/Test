@@ -155,7 +155,7 @@ public class UsuarioDAO {
                 ResultSet rs = psSentencia.executeQuery();
                 while (rs.next()) {
                     user = new Usuario(rs.getString("dni"), rs.getString("nombre"),
-                            rs.getString("password"), rs.getString("contraseña"),
+                            rs.getString("APELLIDOS"), rs.getString("PASSWORD"),
                             rs.getBoolean("es_prof"));
 
                 }
