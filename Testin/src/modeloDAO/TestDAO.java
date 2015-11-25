@@ -47,7 +47,7 @@ public class TestDAO {
                 psSentencia.setInt(3, tester.getDuracion());
                 psSentencia.setInt(4, tester.getResta());
                 psSentencia.setString(5, tester.getDni());
-                psSentencia.setBoolean(6,tester.getActivo());
+                psSentencia.setBoolean(6, tester.getActivo());
                 psSentencia.executeUpdate();
 
             } catch (SQLException ex) {
@@ -95,8 +95,10 @@ public class TestDAO {
         }
         return lista_test;
     }
+
     /**
      * Funcion que devuelve todos los test de la base de datos que esten activos
+     *
      * @return ArrayList con la lista de los test que estan activos
      */
 
@@ -129,10 +131,41 @@ public class TestDAO {
         return listaActivos_test;
 
     }
-/**
- * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
- * @throws Throwable 
- */
+
+    /**
+     * Funcion que devuelve el numero de secuencia siguiente para inserta en el
+     * ID de la tabla.
+     *
+     * @return Int de la secuencia que deber in en la insercion.
+     */
+    public int devuelveSequence() {
+        int sequence = 0;
+        if (psSentencia == null) {
+            try {
+                try {
+                    psSentencia = con.prepareStatement("SELECT test_seq.nextval as seq FROM dual");
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    sequence = rs.getInt("seq");
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
+        }
+        return sequence;
+    }
+
+    /**
+     * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
+     *
+     * @throws Throwable
+     */
     @Override
     protected void finalize() throws Throwable {
         super.finalize();

@@ -94,6 +94,35 @@ public class RespuestaDAO {
     }
 
     /**
+     * Funcion que devuelve el numero de secuencia siguiente para inserta en el
+     * ID de la tabla.
+     *
+     * @return Int de la secuencia que deber in en la insercion.
+     */
+    public int devuelveSequence() {
+        int sequence = 0;
+        if (psSentencia == null) {
+            try {
+                try {
+                    psSentencia = con.prepareStatement("SELECT pregunta_seq.nextval as seq FROM dual");
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    sequence = rs.getInt("seq");
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
+        }
+        return sequence;
+    }
+
+    /**
      * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
      *
      * @throws Throwable

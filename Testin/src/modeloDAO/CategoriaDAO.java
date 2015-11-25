@@ -85,6 +85,35 @@ public class CategoriaDAO {
     }
 
     /**
+     * Funcion que devuelve el numero de secuencia siguiente para inserta en el
+     * ID de la tabla.
+     *
+     * @return Int de la secuencia que deber in en la insercion.
+     */
+    public int devuelveSequence() {
+        int sequence = 0;
+        if (pstmt == null) {
+            try {
+                try {
+                    pstmt = con.prepareStatement("SELECT categoria_seq.nextval as seq FROM dual");
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    sequence = rs.getInt("seq");
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                pstmt = null;
+            }
+        }
+        return sequence;
+    }
+
+    /**
      * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
      *
      * @throws Throwable
