@@ -43,6 +43,7 @@ public class CategoriaDAO {
         try {
             pstmt = con.prepareStatement("INSERT INTO CATEGORIA VALUES (?,?)");
             pstmt.clearParameters();
+            pstmt.setInt(1, cat.getId_categoria());
             pstmt.setString(2, cat.getNombre());
             pstmt.executeUpdate();
         } catch (SQLException ex) {

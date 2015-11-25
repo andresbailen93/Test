@@ -72,7 +72,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
 
         jLabel3.setText("Seleccionar temática:");
 
-        cbSelecTema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSelecTema.setModel(new javax.swing.DefaultComboBoxModel());
         cbSelecTema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSelecTemaActionPerformed(evt);
@@ -89,7 +89,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
 
         lblTestId.setText("Selecciona Test:");
 
-        cbSelecTestID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSelecTestID.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

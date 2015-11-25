@@ -12,8 +12,10 @@ import Vistas.VistaProfesor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import modelo.Categoria;
 import modelo.Test;
 import modelo.Usuario;
+import modeloDAO.CategoriaDAO;
 import modeloDAO.TestDAO;
 import modeloDAO.UsuarioDAO;
 
@@ -25,6 +27,7 @@ public class ProfesorControlador  implements ActionListener {
 
     final private UsuarioDAO usuario;
     private TestDAO testdao=null;
+    private CategoriaDAO categodao=null;
     final private VistaProfesor vistaProfesor;
     private VistaNuevoUsuario vnu=null;
     private VistaNuevoTest vnt=null;
@@ -61,7 +64,10 @@ public class ProfesorControlador  implements ActionListener {
                 aniadeNuevaPregunta();
                 break;
             case "ADDp":
-                aniadePregunta();
+               //aniadePregunta();
+                break;
+            case"ADDcategoria":
+                  aniadeCategoria();  
         }
     }
 
@@ -108,7 +114,7 @@ public class ProfesorControlador  implements ActionListener {
         testdao=new TestDAO();
         test= new Test(testdao.devuelveSequence(),vnt.jTextNombre.getText(),vnt.cbDuracion.getSelectedIndex()*60,
                             vnt.cbRestada.getSelectedIndex(),userprof.getDni(),vnt.rbActivo.isSelected());
-        System.out.println(testdao.devuelveSequence());
+       // System.out.println(testdao.devuelveSequence());
         testdao.insertaTest(test);
         vnt.jTextNombre.setText("");
         vnt.cbDuracion.setSelectedIndex(0);
@@ -119,13 +125,28 @@ public class ProfesorControlador  implements ActionListener {
     }
     private void aniadeNuevaPregunta()throws NullPointerException{
         vcp=new VistaCrearPregunta();
+        testdao=new TestDAO();
+        categodao=new CategoriaDAO();
         vcp.setVisible(true);
         ArrayList<Test> lista_test=testdao.devuelveTestes(userprof);
-        for(int i=0;i<lista_test.size();i++){
-            
-        }
-        vcp.cbSelecTestID.;
         
+        for(int i=0;i<lista_test.size();i++){
+            vcp.cbSelecTestID.addItem(lista_test.get(i).getNombre());
+        }
+        
+        ArrayList<Categoria> lista_cate=categodao.ListarCategorias();
+        for(int i=0;i<lista_cate.size();i++){
+            vcp.cbSelecTema.addItem(lista_cate.get(i).getNombre());
+        }
+        vcp.btnaddTema.setActionCommand("ADDcategoria");
+        vcp.btnaddTema.addActionListener(this);
+    }
+    private void aniadeCategoria(){
+        String categoria=vcp.tfAnadeTema.getText();
+        int idcategoria=categodao.devuelveSequence();
+        Categoria cat=new Categoria(idcategoria,categoria);
+        categodao.InsertarCategoria(cat);
+        vcp.cbSelecTema.addItem(cat.getNombre());
     }
 
     
