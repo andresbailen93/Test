@@ -112,6 +112,6 @@ public class VistaProfesor extends javax.swing.JFrame {
 }
 ///AÑADIR USUARIO
 ///AÑADIR TEST de profesor a NUEVOTEST
-/// CREAR PREGUNTA
+///CREAR PREGUNTA
 ///LISTA TODOS
 ///

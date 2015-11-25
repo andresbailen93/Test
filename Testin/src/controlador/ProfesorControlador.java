@@ -98,18 +98,18 @@ public class ProfesorControlador  implements ActionListener {
         
     }
     private void aniadeTest()throws NullPointerException{
-        
         testdao=new TestDAO();
-        test= new Test(testdao.devuelveSequence(),vnt.jTextNombre.getText(),Integer.parseInt(vnt.jTextDuracion.getText()),
-                            Integer.parseInt(vnt.jTextResta.getText()),userprof.getDni(),vnt.rbActivo.isSelected());
+        test= new Test(testdao.devuelveSequence(),vnt.jTextNombre.getText(),vnt.cbDuracion.getSelectedIndex()*60,
+                            vnt.cbRestada.getSelectedIndex(),userprof.getDni(),vnt.rbActivo.isSelected());
         System.out.println(testdao.devuelveSequence());
         testdao.insertaTest(test);
         vnt.jTextNombre.setText("");
-        vnt.jTextDuracion.setText("");
-        vnt.jTextResta.setText("");
+        vnt.cbDuracion.setSelectedIndex(0);
+        vnt.cbRestada.setSelectedIndex(0);
         vistaProfesor.setVisible(true);
 
     }
+
     
 
 }

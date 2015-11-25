@@ -23,30 +23,36 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnNuevoTest" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="label_nombre" min="-2" max="-2" attributes="0"/>
-                  <Component id="label_duracion" min="-2" max="-2" attributes="0"/>
-                  <Component id="label_resta" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="rbActivo" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextDuracion" max="32767" attributes="0"/>
-                      <Component id="jTextResta" max="32767" attributes="0"/>
-                      <Component id="jTextAutor" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnNuevoTest" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTextNombre" min="-2" pref="226" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label_nombre" min="-2" max="-2" attributes="0"/>
+                          <Component id="label_duracion" min="-2" max="-2" attributes="0"/>
+                          <Component id="label_resta" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="rbActivo" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextAutor" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="jTextNombre" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="cbDuracion" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblTiempo" min="-2" pref="67" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="cbRestada" min="-2" pref="75" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,12 +67,13 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="label_duracion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextDuracion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbDuracion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTiempo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextResta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="label_resta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbRestada" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -75,7 +82,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="rbActivo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
               <Component id="btnNuevoTest" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
@@ -93,11 +100,6 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextDuracion">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="label_duracion">
       <Properties>
         <Property name="text" type="java.lang.String" value="Duraci&#xf3;n:"/>
@@ -107,11 +109,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Puntuaci&#xf3;n restada por fallo:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextResta">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnNuevoTest">
       <Properties>
@@ -138,6 +135,33 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbDuracion">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(tiempo)" type="code"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbRestada">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(resta)" type="code"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTiempo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Minutos."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
