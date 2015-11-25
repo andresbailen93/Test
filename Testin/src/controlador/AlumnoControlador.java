@@ -11,6 +11,7 @@ import Vistas.VistaResultados;
 import Vistas.VistaSeleccionarTest;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import modelo.Examen;
@@ -54,12 +55,22 @@ class AlumnoControlador implements ActionListener{
                 alumno = usuario.devuelveUsuario(dni);
                 System.out.println(alumno);
                 ArrayList<Examen> lista_examenes = new ExamenDAO().devolverExamenesAlumno(alumno);
+                VistaResultados vr = new VistaResultados(lista_examenes.size());
                 
                 for(Examen ex:lista_examenes){
                     System.out.println(ex);
+                    String dni = ex.getDni();
+                    String id_test = Integer.toString(ex.getId_test());
+                    String fecha = new SimpleDateFormat("dd-MM-yyyy").format(ex.getFecha());
+                    String aciertos= Integer.toString(ex.getAciertos());
+                    String fallos=Integer.toString(ex.getFallos());
+                    String nota = Double.toString(ex.getNota());
+                    Object[] row ={dni,id_test,fecha,aciertos,fallos,nota};
+                    vr.modeloTabla.addRow(row);
+                    
+                    
                 }
-                VistaResultados vr = new VistaResultados(lista_examenes.size(),lista_examenes);
-                //vr.modeloTabla.addRow(lista_examenes);
+                
                 vr.setVisible(true);
                 
                 break;

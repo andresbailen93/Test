@@ -19,14 +19,14 @@ public class VistaResultados extends javax.swing.JFrame {
     /**
      * Creates new form VistaResultados
      */
-    public VistaResultados(int ntest,ArrayList<Examen> lista) {
+    public VistaResultados(int ntest) {
         modeloTabla = new DefaultTableModel(new Object[] { "DNI", "ID_TEST","Fecha","Aciertos","Fallos","Puntuación" }, 0);
         
-        for (int i=0; i<ntest; i++){
+        /*for (int i=0; i<ntest; i++){
         
             Object[] rowData = {"1","2","3","4","5","6"};
         modeloTabla.addRow(rowData);
-        }
+        }*/
         initComponents();
     }
 
