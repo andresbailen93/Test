@@ -36,6 +36,7 @@ public class VistaNuevoTest extends javax.swing.JFrame {
         btnNuevoTest = new javax.swing.JButton();
         jTextAutor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        rbActivo = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,10 +50,16 @@ public class VistaNuevoTest extends javax.swing.JFrame {
 
         jLabel1.setText("Autor:");
 
+        rbActivo.setText("Activo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNuevoTest)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,16 +69,13 @@ public class VistaNuevoTest extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbActivo)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jTextDuracion)
                         .addComponent(jTextResta)
                         .addComponent(jTextAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNuevoTest)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,9 +96,11 @@ public class VistaNuevoTest extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbActivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(btnNuevoTest)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -136,14 +142,15 @@ public class VistaNuevoTest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNuevoTest;
+    public javax.swing.JButton btnNuevoTest;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextAutor;
-    private javax.swing.JTextField jTextDuracion;
-    private javax.swing.JTextField jTextNombre;
-    private javax.swing.JTextField jTextResta;
+    public javax.swing.JTextField jTextAutor;
+    public javax.swing.JTextField jTextDuracion;
+    public javax.swing.JTextField jTextNombre;
+    public javax.swing.JTextField jTextResta;
     private javax.swing.JLabel label_duracion;
     private javax.swing.JLabel label_nombre;
     private javax.swing.JLabel label_resta;
+    public javax.swing.JRadioButton rbActivo;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,13 +40,14 @@ public class TestDAO {
     public void insertaTest(Test tester) {
         if (psSentencia == null) {
             try {
-                psSentencia = con.prepareStatement("INSERT INTO TEST (ID_TEST,NOMBRE,DURACION,RESTA,DNI) VALUES (?,?,?,?,?)");
+                psSentencia = con.prepareStatement("INSERT INTO TEST (ID_TEST,NOMBRE,DURACION,RESTA,DNI,ACTIVO) VALUES (?,?,?,?,?,?)");
                 psSentencia.clearParameters();
                 psSentencia.setInt(1, tester.getId_test());
                 psSentencia.setString(2, tester.getNombre());
                 psSentencia.setInt(3, tester.getDuracion());
                 psSentencia.setInt(4, tester.getResta());
                 psSentencia.setString(5, tester.getDni());
+                psSentencia.setBoolean(6,tester.getActivo());
                 psSentencia.executeUpdate();
 
             } catch (SQLException ex) {
