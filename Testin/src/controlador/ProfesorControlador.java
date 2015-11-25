@@ -6,6 +6,7 @@
 package controlador;
 
 import Vistas.VistaLogin;
+import Vistas.VistaNuevoTest;
 import Vistas.VistaNuevoUsuario;
 import Vistas.VistaProfesor;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ public class ProfesorControlador implements ActionListener {
     final private UsuarioDAO usuario;
     final private VistaProfesor vistaProfesor;
     private VistaNuevoUsuario vnu=null;
+    private VistaNuevoTest vnt=null;
 
     public ProfesorControlador(UsuarioDAO u, VistaProfesor vp) {
         usuario = (u == null) ? new UsuarioDAO() : u;
@@ -39,12 +41,17 @@ public class ProfesorControlador implements ActionListener {
             case "ADD":
                 aniadeUsuario();
                 break;
+            case "ADDTEST":
+                aniadeNuevoTest();
+                break;
         }
     }
 
     private void initEvents() {
         vistaProfesor.btnAnadirUsuario.setActionCommand("ADDEUSUARIO");
         vistaProfesor.btnAnadirUsuario.addActionListener(this);
+        vistaProfesor.btnAnadeTest.setActionCommand("ADDTEST");
+        vistaProfesor.btnAnadeTest.addActionListener(this);
         vnu.btnAnadir.setActionCommand("ADD");
         vnu.btnAnadir.addActionListener(this);
     }
@@ -75,6 +82,12 @@ public class ProfesorControlador implements ActionListener {
 
         vistaProfesor.setVisible(true);
         }
+    private void aniadeNuevoTest(){
+        vistaProfesor.setVisible(false);
+        vnt=new VistaNuevoTest();
+        vnt.setVisible(true);
+        
+    }
     
 
 }
