@@ -45,6 +45,7 @@ public class ExamenDAO {
             pstmt = con.prepareStatement("INSERT INTO EXAMEN VALUES (?,?,?,?,?,?)");
             pstmt.clearParameters();
             pstmt.setString(1, exam.getDni());
+            pstmt.setInt(2, exam.getId_test());
             pstmt.setDate(3, exam.getFecha());
             pstmt.setInt(4, exam.getAciertos());
             pstmt.setInt(5, exam.getFallos());

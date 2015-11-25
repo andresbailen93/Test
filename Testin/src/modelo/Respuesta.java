@@ -108,5 +108,10 @@ public class Respuesta {
     public void setId_pregunta(int id_pregunta) {
         this.id_pregunta = id_pregunta;
     }
+    
+    @Override
+    public String toString() {
+        return "Respuesta{" + "id_respuesta=" + id_respuesta + ", texto=" + texto + ", correcta=" + correcta + ", id_pregunta=" + id_pregunta + '}';
+    }
 
 }

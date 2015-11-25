@@ -92,6 +92,29 @@ public class RespuestaDAO {
         }
         return lista_respuesta;
     }
+    
+    public Respuesta getRespuestaCorrecta(Pregunta p) {
+        Respuesta r = null;
+        try {
+            psSentencia = con.prepareStatement("SELECT * FROM RESPUESTA WHERE CORRECTA = 1 AND ID_PREGUNTA = ?");
+            psSentencia.clearParameters();
+            psSentencia.setInt(1, p.getId_pregunta());
+            
+            ResultSet rs = psSentencia.executeQuery();
+            while (rs.next()) {
+                r = new Respuesta (
+                        rs.getInt("ID_RESPUESTA"),
+                        rs.getString("TEXTO"),
+                        rs.getBoolean("CORRECTA"),
+                        rs.getInt("ID_PREGUNTA")
+                );
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
+    }
 
     /**
      * Funcion que devuelve el numero de secuencia siguiente para inserta en el
