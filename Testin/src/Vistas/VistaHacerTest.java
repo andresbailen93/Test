@@ -1,27 +1,24 @@
 package Vistas;
 
 import Vistas.jcPanel;
+import java.util.ArrayList;
+import javax.swing.ButtonGroup;
+import modelo.Respuesta;
 
 /**
  */
 public class VistaHacerTest extends javax.swing.JFrame {
 
-    jcPanel mi_panel = new jcPanel();
+    public jcPanel mi_panel = new jcPanel();
 
     /** Creates new form interfaz */
-    public VistaHacerTest(int nRespuestas, String Pregunta) {
-        
-        
+    public VistaHacerTest() {
         initComponents();
-        labelPregunta.setText(Pregunta);
-        //se añade componente al JFrame
-        this.add(mi_panel);
-        //posicion del panel para no sobreponer al boton
-        this.mi_panel.setLocation(10, 50);
-         for (int i =0; i<nRespuestas; i++){
-         mi_panel.Mi_Componente(this.buttonGroupPreguntas,Integer.toString(i+1)+". Respuestaaaaaaaaaaaaaaaa");
-    }
        
+    }
+    
+    public ButtonGroup getButtoGroupPreguntas() {
+        return buttonGroupPreguntas;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -68,17 +65,7 @@ public class VistaHacerTest extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaHacerTest(5,"Pregunta:").setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnSiguiente;
@@ -86,4 +73,19 @@ public class VistaHacerTest extends javax.swing.JFrame {
     public javax.swing.JLabel labelPregunta;
     // End of variables declaration//GEN-END:variables
 
+        
+    public void setPregunta(String texto, ArrayList<Respuesta> listaRespuestas, int totalPreguntas, int preguntaActual) {
+        labelPregunta.setText("("+Integer.toString(preguntaActual+1)+" / "+Integer.toString(totalPreguntas)+") "+texto);
+        if (totalPreguntas == preguntaActual+1)
+            btnSiguiente.setText("Finalizar");
+        //se añade componente al JFrame
+        add(mi_panel);
+        //posicion del panel para no sobreponer al boton
+        mi_panel.setLocation(10, 50);
+        mi_panel.vaciar();
+        for (int i =0; i<listaRespuestas.size(); i++){
+            mi_panel.Mi_Componente(this.buttonGroupPreguntas,listaRespuestas.get(i).getTexto());
+        }
+        revalidate();
+    }
 }

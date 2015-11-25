@@ -99,14 +99,16 @@ public class TestDAO {
      * @return ArrayList con la lista de los test que estan activos
      */
 
-    public ArrayList<Test> devuelveTestActivos() {
+    public ArrayList<Test> devuelveTestActivos(Usuario u) {
         //DEVOLVER TEST CUYO VALOR ESTE ACTIVO.
         ArrayList<Test> listaActivos_test = new ArrayList<>();
 
         if (psSentencia == null) {
             try {
                 try {
-                    psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ACTIVO=1");
+                    psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ACTIVO=1 AND ID_TEST NOT IN (SELECT ID_TEST FROM EXAMEN WHERE DNI = ?)");
+                    psSentencia.clearParameters();
+                    psSentencia.setString(1, u.getDni());
                 } catch (SQLException ex) {
                     Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -127,6 +129,29 @@ public class TestDAO {
         }
         return listaActivos_test;
 
+    }
+    
+    public Test getTest(Integer id) {
+        Test t = null;
+        
+        try {
+            psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ID_TEST = ?");
+            psSentencia.clearParameters();
+            psSentencia.setInt(1, id);
+            ResultSet rs = psSentencia.executeQuery();
+            while (rs.next()) {
+                t = new Test(rs.getInt("ID_TEST"),
+                             rs.getString("NOMBRE"),
+                             rs.getInt("DURACION"),
+                             rs.getInt("RESTA"),
+                             rs.getString("DNI"),
+                             rs.getBoolean("ACTIVO"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return t;
     }
 /**
  * Funcion que hace que se cierre la conexion cuando se elimina el objeto.

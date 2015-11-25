@@ -13,20 +13,22 @@ public class Pregunta {
     
     private int id_pregunta;
     private String texto;
-    private int id_categoría;
+    private int id_categoria;
+
+   
     private byte[] imagen; ///////////Revisar
 
     /**
      * Constructor de la case Pregunta
      * @param id_pregunta Identificador de la pregunta
      * @param texto Texto que compone la pregunta
-     * @param id_categoría Identificador de la categoría a la que pertenece la pregunta
+     * @param id_categoria Identificador de la categoría a la que pertenece la pregunta
      * @param imagen Imagen que ilustra a la pregunta
      */
-    public Pregunta(int id_pregunta, String texto, int id_categoría, byte[] imagen) {
+    public Pregunta(int id_pregunta, String texto, int id_categoria, byte[] imagen) {
         this.id_pregunta = id_pregunta;
         this.texto = texto;
-        this.id_categoría = id_categoría;
+        this.id_categoria = id_categoria;
         this.imagen = imagen;
     }
 
@@ -67,7 +69,7 @@ public class Pregunta {
      * @return ID de la categoría a la que pertenece la pregunta
      */
     public int getId_categoría() {
-        return id_categoría;
+        return id_categoria;
     }
 
     /**
@@ -75,7 +77,7 @@ public class Pregunta {
      * @param id_categoría Recibe como parámetro el ID de la categoría a la que pertenece
      */
     public void setId_categoría(int id_categoría) {
-        this.id_categoría = id_categoría;
+        this.id_categoria = id_categoría;
     }
 
    /**
@@ -95,7 +97,10 @@ public class Pregunta {
     }
     
     
-    
+    @Override
+    public String toString() {
+        return "Pregunta{" + "id_pregunta=" + id_pregunta + ", texto=" + texto + ", id_categor\u00eda=" + id_categoria + ", imagen=" + imagen + '}';
+    }
     
     
     

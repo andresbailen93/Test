@@ -149,4 +149,8 @@ public class Test {
         this.activo=activo;
     }
 
+    @Override
+    public String toString() {
+        return "Test{" + "id_test=" + id_test + ", nombre=" + nombre + ", duracion=" + duracion + ", resta=" + resta + ", dni=" + dni + ", activo=" + activo + '}';
+    }
 }
