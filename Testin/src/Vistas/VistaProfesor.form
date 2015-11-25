@@ -31,8 +31,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnAnadirUsuario" max="32767" attributes="0"/>
                   <Component id="btnAnadeTest" max="32767" attributes="0"/>
+                  <Component id="btnCreaPregunta" max="32767" attributes="0"/>
+                  <Component id="btnAnadirUsuario" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -43,9 +44,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="etqVistaProfesor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="165" max="32767" attributes="0"/>
+              <EmptySpace pref="155" max="32767" attributes="0"/>
               <Component id="btnAnadeTest" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnCreaPregunta" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAnadirUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -62,6 +65,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir Usuario"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnadirUsuarioActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VistaProfesor_btnAnadirUsuario"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -70,6 +76,14 @@
     <Component class="javax.swing.JButton" name="btnAnadeTest">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir Test"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCreaPregunta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#xf1;adir Pregunta"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

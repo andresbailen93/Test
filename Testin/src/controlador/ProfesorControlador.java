@@ -5,11 +5,13 @@
  */
 package controlador;
 
+import Vistas.VistaCrearPregunta;
 import Vistas.VistaNuevoTest;
 import Vistas.VistaNuevoUsuario;
 import Vistas.VistaProfesor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import modelo.Test;
 import modelo.Usuario;
 import modeloDAO.TestDAO;
@@ -26,6 +28,7 @@ public class ProfesorControlador  implements ActionListener {
     final private VistaProfesor vistaProfesor;
     private VistaNuevoUsuario vnu=null;
     private VistaNuevoTest vnt=null;
+    private VistaCrearPregunta vcp=null;
     private Usuario creauser=null;
     private Usuario userprof;
     private Test test=null;
@@ -54,6 +57,11 @@ public class ProfesorControlador  implements ActionListener {
             case "ADDt":
                 aniadeTest();
                 break;
+            case "ADDPREGUNTA":
+                aniadeNuevaPregunta();
+                break;
+            case "ADDp":
+                aniadePregunta();
         }
     }
 
@@ -62,11 +70,12 @@ public class ProfesorControlador  implements ActionListener {
         vistaProfesor.btnAnadirUsuario.addActionListener(this);
         vistaProfesor.btnAnadeTest.setActionCommand("ADDTEST");
         vistaProfesor.btnAnadeTest.addActionListener(this);
+        vistaProfesor.btnCreaPregunta.setActionCommand("ADDPREGUNTA");
+        vistaProfesor.btnCreaPregunta.addActionListener(this);
 
     }
 
     private void aniadeVistaUsuario() throws NullPointerException{
-        vistaProfesor.setVisible(false);
         vnu= new VistaNuevoUsuario();
         vnu.setVisible(true);
         vnu.btnAnadir.setActionCommand("ADDu");
@@ -80,7 +89,6 @@ public class ProfesorControlador  implements ActionListener {
                 vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
                 vnu.pfPassword.getText(), vnu.rbSiPermiso.isSelected());
         usuario.insertaUsuario(creauser);
-        //vnu.setVisible(false);
         vnu.tfNombre.setText("");
         vnu.tfDniUser.setText("");
         vnu.tfApellidos.setText("");
@@ -89,7 +97,6 @@ public class ProfesorControlador  implements ActionListener {
         vistaProfesor.setVisible(true);
         }
     private void aniadeNuevoTest()throws NullPointerException{
-        vistaProfesor.setVisible(false);
         vnt=new VistaNuevoTest();
         vnt.setVisible(true);
         vnt.btnNuevoTest.setActionCommand("ADDt");
@@ -107,7 +114,18 @@ public class ProfesorControlador  implements ActionListener {
         vnt.cbDuracion.setSelectedIndex(0);
         vnt.cbRestada.setSelectedIndex(0);
         vistaProfesor.setVisible(true);
+        vnt.setVisible(false);
 
+    }
+    private void aniadeNuevaPregunta()throws NullPointerException{
+        vcp=new VistaCrearPregunta();
+        vcp.setVisible(true);
+        ArrayList<Test> lista_test=testdao.devuelveTestes(userprof);
+        for(int i=0;i<lista_test.size();i++){
+            
+        }
+        vcp.cbSelecTestID.;
+        
     }
 
     

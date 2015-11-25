@@ -28,8 +28,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAnadirPreg = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -37,33 +36,33 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
         tfTextoPregunta = new javax.swing.JTextField();
         tfAnadeTema = new javax.swing.JTextField();
         btnaddTema = new javax.swing.JButton();
+        lblTestId = new javax.swing.JLabel();
+        cbSelecTestID = new javax.swing.JComboBox<>();
         jPanelRespuestas = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        btnUno = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        rbtnUno = new javax.swing.JRadioButton();
+        rbtnDos = new javax.swing.JRadioButton();
+        rbtnTres = new javax.swing.JRadioButton();
+        rbtnCuatro = new javax.swing.JRadioButton();
+        tfRespDos = new javax.swing.JTextField();
+        tfRespTres = new javax.swing.JTextField();
+        tfRespUno = new javax.swing.JTextField();
+        tdRespCuatro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAnadirResp = new javax.swing.JButton();
+        btnFinal = new javax.swing.JButton();
 
-        buttonGroup1.add(btnUno);
-        buttonGroup1.add(jRadioButton2);
-        buttonGroup1.add(jRadioButton3);
-        buttonGroup1.add(jRadioButton4);
-
-        jButton4.setText("jButton4");
+        buttonGroup1.add(rbtnUno);
+        buttonGroup1.add(rbtnDos);
+        buttonGroup1.add(rbtnTres);
+        buttonGroup1.add(rbtnCuatro);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Añadir Pregunta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAnadirPreg.setText("Añadir Pregunta");
+        btnAnadirPreg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAnadirPregActionPerformed(evt);
             }
         });
 
@@ -88,6 +87,10 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
 
         btnaddTema.setText("Añadir Temática");
 
+        lblTestId.setText("Selecciona Test:");
+
+        cbSelecTestID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,31 +100,45 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfTextoPregunta))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(cbSelecTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tfAnadeTema, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblTestId)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbSelecTestID, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfAnadeTema)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnaddTema)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbSelecTema, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnaddTema, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfTextoPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfTextoPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(cbSelecTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(cbSelecTestID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTestId))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cbSelecTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfAnadeTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnaddTema, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,31 +149,31 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
 
         jLabel2.setText("Respuestas:");
 
-        btnUno.setText("1");
-        btnUno.addActionListener(new java.awt.event.ActionListener() {
+        rbtnUno.setText("1");
+        rbtnUno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUnoActionPerformed(evt);
+                rbtnUnoActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("2");
+        rbtnDos.setText("2");
 
-        jRadioButton3.setText("3");
+        rbtnTres.setText("3");
 
-        jRadioButton4.setText("4");
+        rbtnCuatro.setText("4");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        tfRespDos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                tfRespDosActionPerformed(evt);
             }
         });
 
         jLabel4.setText("*Debe marcar la respuesta correcta.");
 
-        jButton5.setText("jButton5");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAnadirResp.setText("Añade Respuesta");
+        btnAnadirResp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAnadirRespActionPerformed(evt);
             }
         });
 
@@ -165,33 +182,34 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
         jPanelRespuestasLayout.setHorizontalGroup(
             jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRespuestasLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelRespuestasLayout.createSequentialGroup()
-                        .addComponent(btnUno)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField4))
-                    .addGroup(jPanelRespuestasLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanelRespuestasLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButton2)
-                                .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jRadioButton4))
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2))))
+                            .addGroup(jPanelRespuestasLayout.createSequentialGroup()
+                                .addComponent(rbtnUno)
+                                .addGap(12, 12, 12)
+                                .addComponent(tfRespUno))
+                            .addGroup(jPanelRespuestasLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanelRespuestasLayout.createSequentialGroup()
+                                .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(rbtnDos)
+                                        .addComponent(rbtnTres, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(rbtnCuatro))
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tdRespCuatro)
+                                    .addComponent(tfRespTres)
+                                    .addComponent(tfRespDos)))))
+                    .addGroup(jPanelRespuestasLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addComponent(btnAnadirResp)))
                 .addContainerGap())
-            .addGroup(jPanelRespuestasLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRespuestasLayout.setVerticalGroup(
             jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,46 +217,43 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(19, 19, 19)
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUno))
+                    .addComponent(tfRespUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtnUno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbtnDos)
+                    .addComponent(tfRespDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbtnTres)
+                    .addComponent(tfRespTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton4))
+                    .addComponent(tdRespCuatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtnCuatro))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jButton5))
+                    .addComponent(btnAnadirResp))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Finalizar");
+        btnFinal.setText("Finalizar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelRespuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelRespuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
+                        .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnAnadirPreg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(124, 124, 124)))
                 .addContainerGap())
         );
@@ -246,45 +261,45 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jButton1)
+                .addComponent(btnAnadirPreg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnFinal)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAnadirPregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirPregActionPerformed
         // TODO add your handling code here:
         
         //Almacena en la base de datos
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAnadirPregActionPerformed
 
-    private void btnUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnoActionPerformed
+    private void rbtnUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnUnoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUnoActionPerformed
+    }//GEN-LAST:event_rbtnUnoActionPerformed
 
     private void tfTextoPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTextoPreguntaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTextoPreguntaActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void tfRespDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRespDosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_tfRespDosActionPerformed
 
     private void cbSelecTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSelecTemaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbSelecTemaActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnAnadirRespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirRespActionPerformed
         // TODO add your handling code here:
         jPanelRespuestas.add(new jpComponente());
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnAnadirRespActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,28 +338,29 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton btnUno;
-    private javax.swing.JButton btnaddTema;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox cbSelecTema;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    public javax.swing.JButton btnAnadirPreg;
+    public javax.swing.JButton btnAnadirResp;
+    public javax.swing.JButton btnFinal;
+    public javax.swing.JButton btnaddTema;
+    public javax.swing.ButtonGroup buttonGroup1;
+    public javax.swing.JComboBox cbSelecTema;
+    public javax.swing.JComboBox<String> cbSelecTestID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelRespuestas;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField tfAnadeTema;
-    private javax.swing.JTextField tfTextoPregunta;
+    public javax.swing.JPanel jPanelRespuestas;
+    public javax.swing.JLabel lblTestId;
+    private javax.swing.JRadioButton rbtnCuatro;
+    public javax.swing.JRadioButton rbtnDos;
+    public javax.swing.JRadioButton rbtnTres;
+    public javax.swing.JRadioButton rbtnUno;
+    public javax.swing.JTextField tdRespCuatro;
+    public javax.swing.JTextField tfAnadeTema;
+    public javax.swing.JTextField tfRespDos;
+    public javax.swing.JTextField tfRespTres;
+    public javax.swing.JTextField tfRespUno;
+    public javax.swing.JTextField tfTextoPregunta;
     // End of variables declaration//GEN-END:variables
 }
