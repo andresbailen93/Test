@@ -21,15 +21,23 @@ public class ProfesorControlador implements ActionListener {
 
     final private UsuarioDAO usuario;
     final private VistaProfesor vistaProfesor;
+    final private VistaNuevoUsuario vistaNuevoUsuario;
     private VistaNuevoUsuario vnu=null;
 
     public ProfesorControlador(UsuarioDAO u, VistaProfesor vp) {
         usuario = (u == null) ? new UsuarioDAO() : u;
         vistaProfesor = vp;
         vistaProfesor.setVisible(true);
+        vistaNuevoUsuario=null;
         initEvents();
     }
-
+    public ProfesorControlador(UsuarioDAO u, VistaNuevoUsuario vnu){
+        usuario = (u == null) ? new UsuarioDAO() : u;
+        vistaProfesor=null;
+        vistaNuevoUsuario = vnu;
+        vistaNuevoUsuario.setVisible(true);
+        initEvents(); 
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("ADDEUSUARIO")) {
@@ -43,14 +51,13 @@ public class ProfesorControlador implements ActionListener {
     private void initEvents() {
         vistaProfesor.btnAnadirUsuario.setActionCommand("ADDEUSUARIO");
         vistaProfesor.btnAnadirUsuario.addActionListener(this);
-        vnu.btnAnadir.setActionCommand("ADDUSER");
-        vnu.btnAnadir.addActionListener(this);//REVISAAaaaaaaaaaaR
+        vistaNuevoUsuario.btnAnadir.setActionCommand("ADDUSER");
+        vistaNuevoUsuario.btnAnadir.addActionListener(this);//REVISAAaaaaaaaaaaR
     }
 
     private void aniadeVistaUsuario() {
         vistaProfesor.setVisible(false);
-        vnu = new VistaNuevoUsuario();
-        vnu.setVisible(true); 
+        ProfesorControlador ctrProfesor = new ProfesorControlador(usuario,new VistaNuevoUsuario());
     }
 
     private void aniadeUsuario() {
