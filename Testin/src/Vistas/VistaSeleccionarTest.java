@@ -29,9 +29,9 @@ public class VistaSeleccionarTest extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSeleccionarTest = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        jListTest = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,14 +53,19 @@ public class VistaSeleccionarTest extends javax.swing.JFrame {
             .addComponent(jLabel1)
         );
 
-        jButton1.setText("Seleccionar");
+        btnSeleccionarTest.setText("Seleccionar");
+        btnSeleccionarTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarTestActionPerformed(evt);
+            }
+        });
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        jListTest.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(jListTest);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +78,7 @@ public class VistaSeleccionarTest extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
-                        .addComponent(jButton1)
+                        .addComponent(btnSeleccionarTest)
                         .addGap(0, 144, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -88,12 +93,18 @@ public class VistaSeleccionarTest extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnSeleccionarTest)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSeleccionarTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarTestActionPerformed
+        // Lanza la vista HacerTest
+        new VistaHacerTest(4, "Pregunta").setVisible(true); //Habria que llamarlo x veces una por cada pregunta del test
+        this.dispose();
+    }//GEN-LAST:event_btnSeleccionarTestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,9 +143,9 @@ public class VistaSeleccionarTest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton btnSeleccionarTest;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList2;
+    public javax.swing.JList jListTest;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
