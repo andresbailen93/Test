@@ -156,4 +156,11 @@ public class Examen {
         this.nota = nota;
     }
 
+    @Override
+    public String toString() {
+        return "Examen{" + "dni=" + dni + ", id_test=" + id_test + ", fecha=" + fecha + ", aciertos=" + aciertos + ", fallos=" + fallos + ", nota=" + nota + '}';
+    }
+    
+    
+
 }

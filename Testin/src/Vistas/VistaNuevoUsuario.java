@@ -32,7 +32,6 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         tfNombre = new javax.swing.JTextField();
         tfApellidos = new javax.swing.JTextField();
-        tfPassword = new javax.swing.JTextField();
         labelNombre = new javax.swing.JLabel();
         labelApellidos = new javax.swing.JLabel();
         labelDni = new javax.swing.JLabel();
@@ -41,6 +40,7 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
         labelPermiso = new javax.swing.JLabel();
         rbSiPermiso = new javax.swing.JRadioButton();
         rbNoPermiso = new javax.swing.JRadioButton();
+        pfPassword = new javax.swing.JPasswordField();
 
         buttonGroup1.add(rbSiPermiso);
         buttonGroup1.add(rbNoPermiso);
@@ -49,6 +49,11 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
         setTitle("Nuevo usuario");
 
         btnAnadir.setText("Añadir");
+        btnAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnadirActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -84,11 +89,11 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
                     .addComponent(tfDniUser, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(tfNombre)
                     .addComponent(tfApellidos)
-                    .addComponent(tfPassword)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(rbSiPermiso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbNoPermiso)))
+                        .addComponent(rbNoPermiso))
+                    .addComponent(pfPassword))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,7 +114,7 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPassword)
-                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPermiso, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
@@ -122,14 +127,13 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAnadir)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,6 +147,10 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAnadirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,11 +199,11 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
     public javax.swing.JLabel labelNombre;
     public javax.swing.JLabel labelPassword;
     public javax.swing.JLabel labelPermiso;
+    public javax.swing.JPasswordField pfPassword;
     public javax.swing.JRadioButton rbNoPermiso;
     public javax.swing.JRadioButton rbSiPermiso;
     public javax.swing.JTextField tfApellidos;
     public javax.swing.JTextField tfDniUser;
     public javax.swing.JTextField tfNombre;
-    public javax.swing.JTextField tfPassword;
     // End of variables declaration//GEN-END:variables
 }

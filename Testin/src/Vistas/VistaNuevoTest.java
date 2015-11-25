@@ -10,7 +10,8 @@ package Vistas;
  * @author Asus
  */
 public class VistaNuevoTest extends javax.swing.JFrame {
-
+    private String[] tiempo={"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"};
+    private String[] resta={"0","1","1/2","1/3","1/4","1/5"};
     /**
      * Creates new form VistaNuevoTest
      */
@@ -27,17 +28,92 @@ public class VistaNuevoTest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        label_nombre = new javax.swing.JLabel();
+        jTextNombre = new javax.swing.JTextField();
+        label_duracion = new javax.swing.JLabel();
+        label_resta = new javax.swing.JLabel();
+        btnNuevoTest = new javax.swing.JButton();
+        jTextAutor = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        rbActivo = new javax.swing.JRadioButton();
+        cbDuracion = new javax.swing.JComboBox<>();
+        cbRestada = new javax.swing.JComboBox<>();
+        lblTiempo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        label_nombre.setText("Nombre:");
+
+        label_duracion.setText("Duración:");
+
+        label_resta.setText("Puntuación restada por fallo:");
+
+        btnNuevoTest.setText("Nuevo Test");
+
+        jLabel1.setText("Autor:");
+
+        rbActivo.setText("Activo");
+
+        cbDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(tiempo));
+
+        cbRestada.setModel(new javax.swing.DefaultComboBoxModel<>(resta));
+
+        lblTiempo.setText("Minutos.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnNuevoTest))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_nombre)
+                            .addComponent(label_duracion)
+                            .addComponent(label_resta)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbActivo)
+                            .addComponent(jTextAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbRestada, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_nombre)
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_duracion)
+                    .addComponent(cbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTiempo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_resta)
+                    .addComponent(cbRestada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbActivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(btnNuevoTest)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -79,5 +155,16 @@ public class VistaNuevoTest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnNuevoTest;
+    public javax.swing.JComboBox<String> cbDuracion;
+    public javax.swing.JComboBox<String> cbRestada;
+    private javax.swing.JLabel jLabel1;
+    public javax.swing.JTextField jTextAutor;
+    public javax.swing.JTextField jTextNombre;
+    private javax.swing.JLabel label_duracion;
+    private javax.swing.JLabel label_nombre;
+    private javax.swing.JLabel label_resta;
+    private javax.swing.JLabel lblTiempo;
+    public javax.swing.JRadioButton rbActivo;
     // End of variables declaration//GEN-END:variables
 }

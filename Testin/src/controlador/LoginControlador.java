@@ -30,15 +30,15 @@ public class LoginControlador implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) throws NullPointerException{
         if (e.getActionCommand().equals("LOGIN")) {
             
-            Usuario u = usuario.logginUser(vistaLogin.user.getText(), vistaLogin.pass.getText());//He quitado los toString era redundante
+            Usuario u = usuario.logginUser(vistaLogin.user.getText(), vistaLogin.pfPassword.getText());//He quitado los toString era redundante
             //System.out.println(u);
             if (u != null) {
                 
                 if (u.isEs_profesor()) {
-                    ProfesorControlador pc= new ProfesorControlador(usuario, new VistaProfesor());
+                    ProfesorControlador pc= new ProfesorControlador(usuario, u,new VistaProfesor());
                 }
                 else {
                     AlumnoControlador ac = new AlumnoControlador(u, new VistaAlumno(u.getNombre()));    

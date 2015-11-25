@@ -12,20 +12,28 @@ import Vistas.VistaResultados;
 import Vistas.VistaSeleccionarTest;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.DefaultListModel;
+
 import javax.swing.JOptionPane;
 import modelo.Examen;
 import modelo.Pregunta;
 import modelo.Respuesta;
+
+import modelo.Examen;
+
 import modelo.Test;
 import modelo.Usuario;
 import modeloDAO.ExamenDAO;
+
 import modeloDAO.PreguntaDAO;
 import modeloDAO.RespuestaDAO;
+
 import modeloDAO.TestDAO;
+import modeloDAO.UsuarioDAO;
 
 /**
  *
@@ -37,8 +45,14 @@ class AlumnoControlador implements ActionListener{
     private VistaSeleccionarTest vst;
     private VistaHacerTest vht;
     private TestDAO testDAO;
+
     private RespuestaDAO respuestaDAO;
-    
+
+    private ExamenDAO examenDAO;
+    private UsuarioDAO usuarioDAO;
+    String dni;
+    private Usuario alumno;
+
     private ArrayList<Test> listaTest;
     private ArrayList<Pregunta> listaPreguntas;
     private int preguntaActual = 0; // Indica la pregunta por la que va el test
@@ -47,10 +61,20 @@ class AlumnoControlador implements ActionListener{
     private Usuario usuario;
     
     public AlumnoControlador(Usuario u, VistaAlumno v){
+       this.va=v;
+        va.setVisible(true);
+        initEvents();
+        this.usuario = u; 
+    }
+
+    public AlumnoControlador(UsuarioDAO u,String dni, VistaAlumno v){
+        usuarioDAO = (u == null) ? new UsuarioDAO() : u;
+        this.dni=dni;
+
         this.va=v;
         va.setVisible(true);
         initEvents();
-        this.usuario = u;
+        
     }
 
     @Override
@@ -64,8 +88,27 @@ class AlumnoControlador implements ActionListener{
                 vst.setVisible(true);
                 break;
             case "RESULTADOS":
-                VistaResultados vr = new VistaResultados(10);
+                alumno = usuarioDAO.devuelveUsuario(dni);
+                System.out.println(alumno);
+                ArrayList<Examen> lista_examenes = new ExamenDAO().devolverExamenesAlumno(alumno);
+                VistaResultados vr = new VistaResultados(lista_examenes.size());
+                
+                for(Examen ex:lista_examenes){
+                    System.out.println(ex);
+                    String dni = ex.getDni();
+                    String id_test = Integer.toString(ex.getId_test());
+                    String fecha = new SimpleDateFormat("dd-MM-yyyy").format(ex.getFecha());
+                    String aciertos= Integer.toString(ex.getAciertos());
+                    String fallos=Integer.toString(ex.getFallos());
+                    String nota = Double.toString(ex.getNota());
+                    Object[] row ={dni,id_test,fecha,aciertos,fallos,nota};
+                    vr.modeloTabla.addRow(row);
+                    
+                    
+                }
+                
                 vr.setVisible(true);
+                
                 break;
             case "SELECCIONAR_TEST":
                 vht = new VistaHacerTest();
@@ -163,5 +206,12 @@ class AlumnoControlador implements ActionListener{
         Examen e = new Examen(usuario.getDni(), t.getId_test(), new Date(Calendar.getInstance().getTime().getTime()), correctas, falladas, nota);
         new ExamenDAO().crearExamen(e);
     }
+
+   private void processSeleccionar(){
+       ArrayList<Examen> listaExamenes = new ExamenDAO().devolverExamenesAlumno(null);
+       
+       
+   }
+
     
 }

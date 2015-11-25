@@ -40,7 +40,7 @@ public class UsuarioDAO {
 
         if (null == psSentencia) {
             try {
-                psSentencia = con.prepareStatement("INSERT INTO USUARIO (DNI,NOMBRE,APELLIDOS,PASSWORD,ES_PROFESOR) VALUES (?,?,?,?,?)");
+                psSentencia = con.prepareStatement("INSERT INTO USUARIO (DNI,NOMBRE,APELLIDOS,PASSWORD,ES_PROF) VALUES (?,?,?,?,?)");
                 psSentencia.clearParameters();
                 psSentencia.setString(1, usua.getDni());
                 psSentencia.setString(2, usua.getNombre());
@@ -115,7 +115,7 @@ public class UsuarioDAO {
         if (psSentencia == null) {
             try {
                 try {
-                    psSentencia = con.prepareStatement("SELECT ES_PROFESOR FROM USUARIO WHERE DNI=?");
+                    psSentencia = con.prepareStatement("SELECT ES_PROF FROM USUARIO WHERE DNI=?");
                     psSentencia.clearParameters();
                     psSentencia.setString(1, user.getDni());
                 } catch (SQLException ex) {
@@ -123,7 +123,7 @@ public class UsuarioDAO {
                 }
                 ResultSet rs = psSentencia.executeQuery();
                 while (rs.next()) {
-                    isprofesor = rs.getBoolean("ES_PROFESOR");
+                    isprofesor = rs.getBoolean("ES_PROF");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,7 +155,7 @@ public class UsuarioDAO {
                 ResultSet rs = psSentencia.executeQuery();
                 while (rs.next()) {
                     user = new Usuario(rs.getString("dni"), rs.getString("nombre"),
-                            rs.getString("password"), rs.getString("contraseña"),
+                            rs.getString("APELLIDOS"), rs.getString("PASSWORD"),
                             rs.getBoolean("es_prof"));
 
                 }
