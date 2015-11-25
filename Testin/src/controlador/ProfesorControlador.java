@@ -65,9 +65,14 @@ public class ProfesorControlador implements ActionListener {
         }
         Usuario user = new Usuario(vnu.tfDniUser.getText(),
                 vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
-                vnu.tfPassword.getText(), es_prof);
+                vnu.pfPassword.getText(), es_prof);
         usuario.insertaUsuario(user);
         //vnu.setVisible(false);
+        vnu.tfNombre.setText("");
+        vnu.tfDniUser.setText("");
+        vnu.tfApellidos.setText("");
+        vnu.pfPassword.setText("");
+
         vistaProfesor.setVisible(true);
         }
     
