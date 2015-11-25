@@ -41,7 +41,8 @@ public class LoginControlador implements ActionListener {
                     ProfesorControlador pc= new ProfesorControlador(usuario, new VistaProfesor());
                 }
                 else {
-                    AlumnoControlador ac = new AlumnoControlador(new VistaAlumno(u.getNombre()));    
+                    //System.out.println("entra");
+                    AlumnoControlador ac = new AlumnoControlador(usuario,vistaLogin.user.getText(),new VistaAlumno(u.getNombre()));    
                 }
             }
             else {
