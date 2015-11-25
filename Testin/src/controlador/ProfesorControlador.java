@@ -19,7 +19,7 @@ import modeloDAO.UsuarioDAO;
  *
  * @author andresbailen93
  */
-public class ProfesorControlador implements ActionListener {
+public class ProfesorControlador  implements ActionListener {
 
     final private UsuarioDAO usuario;
     final private TestDAO testdao=null;
@@ -27,6 +27,7 @@ public class ProfesorControlador implements ActionListener {
     private VistaNuevoUsuario vnu=null;
     private VistaNuevoTest vnt=null;
     private Usuario user=null;
+    private Test test=null;
 
     public ProfesorControlador(UsuarioDAO u, VistaProfesor vp) {
         usuario = (u == null) ? new UsuarioDAO() : u;
@@ -49,10 +50,11 @@ public class ProfesorControlador implements ActionListener {
                 break;
             case "ADDt":
                 aniadeTest();
+                break;
         }
     }
 
-    private void initEvents() {
+    private void initEvents() throws NullPointerException{
         vistaProfesor.btnAnadirUsuario.setActionCommand("ADDEUSUARIO");
         vistaProfesor.btnAnadirUsuario.addActionListener(this);
         vistaProfesor.btnAnadeTest.setActionCommand("ADDTEST");
@@ -63,7 +65,7 @@ public class ProfesorControlador implements ActionListener {
         vnt.btnNuevoTest.addActionListener(this);
     }
 
-    private void aniadeVistaUsuario() {
+    private void aniadeVistaUsuario() throws NullPointerException{
         vistaProfesor.setVisible(false);
         vnu= new VistaNuevoUsuario();
         vnu.setVisible(true);
@@ -72,7 +74,7 @@ public class ProfesorControlador implements ActionListener {
         
     }
 
-    private void aniadeUsuario() {
+    private void aniadeUsuario() throws NullPointerException{
        
         user = new Usuario(vnu.tfDniUser.getText(),
                 vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
@@ -86,18 +88,19 @@ public class ProfesorControlador implements ActionListener {
 
         vistaProfesor.setVisible(true);
         }
-    private void aniadeNuevoTest(){
+    private void aniadeNuevoTest()throws NullPointerException{
         vistaProfesor.setVisible(false);
         vnt=new VistaNuevoTest();
         vnt.setVisible(true);
         vnt.btnNuevoTest.setActionCommand("ADDt");
         vnt.btnNuevoTest.addActionListener(this);
+        vnt.jTextAutor.setText(user.getDni());
         
     }
-    private void aniadeTest(){
-        vnt.jTextAutor.setText(user.getDni());
-        Test test= new Test(4,vnt.jTextNombre.getText(),Integer.parseInt(vnt.jTextDuracion.getText()),
-                            Integer.parseInt(vnt.jTextResta.getText()),vnt.jTextAutor.getText(),vnt.rbActivo.isSelected());
+    private void aniadeTest()throws NullPointerException{
+        test= new Test(testdao.devuelveSequence(),vnt.jTextNombre.getText(),Integer.parseInt(vnt.jTextDuracion.getText()),
+                            Integer.parseInt(vnt.jTextResta.getText()),user.getDni(),vnt.rbActivo.isSelected());
+        System.out.println(testdao.devuelveSequence());
         testdao.insertaTest(test);
         vnt.jTextNombre.setText("");
         vnt.jTextDuracion.setText("");

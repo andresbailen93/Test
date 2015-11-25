@@ -5,6 +5,8 @@
  */
 package modeloDAO;
 
+import modelo.Test;
+
 /**
  *
  * @author andresbailen93
@@ -16,5 +18,14 @@ public class DemoBBDD {
         System.out.println(conec);
         conec.desconecta(conec.getCon());
         System.out.println(conec);
+        
+        TestDAO testdao=new TestDAO();
+        System.out.println(testdao.devuelveSequence()+1);
+        
+        Test test= new Test(7,"PRUEBA PUTO TEST",60,2,"77774444P",true);
+        System.out.println(test.toString());
+        testdao.insertaTest(test);
+        
+        
     }
 }
