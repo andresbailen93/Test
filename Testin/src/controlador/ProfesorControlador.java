@@ -22,19 +22,22 @@ import modeloDAO.UsuarioDAO;
 public class ProfesorControlador  implements ActionListener {
 
     final private UsuarioDAO usuario;
-    final private TestDAO testdao=null;
+    private TestDAO testdao=null;
     final private VistaProfesor vistaProfesor;
     private VistaNuevoUsuario vnu=null;
     private VistaNuevoTest vnt=null;
-    private Usuario user=null;
+    private Usuario creauser=null;
+    private Usuario userprof;
     private Test test=null;
 
-    public ProfesorControlador(UsuarioDAO u, VistaProfesor vp) {
+    public ProfesorControlador(UsuarioDAO u,Usuario us, VistaProfesor vp) throws NullPointerException{
         usuario = (u == null) ? new UsuarioDAO() : u;
         vistaProfesor = vp;
         vistaProfesor.setVisible(true);
+        userprof=us;
         initEvents();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -59,10 +62,7 @@ public class ProfesorControlador  implements ActionListener {
         vistaProfesor.btnAnadirUsuario.addActionListener(this);
         vistaProfesor.btnAnadeTest.setActionCommand("ADDTEST");
         vistaProfesor.btnAnadeTest.addActionListener(this);
-        vnu.btnAnadir.setActionCommand("ADDu");
-        vnu.btnAnadir.addActionListener(this);
-        vnt.btnNuevoTest.setActionCommand("ADDt");
-        vnt.btnNuevoTest.addActionListener(this);
+
     }
 
     private void aniadeVistaUsuario() throws NullPointerException{
@@ -76,10 +76,10 @@ public class ProfesorControlador  implements ActionListener {
 
     private void aniadeUsuario() throws NullPointerException{
        
-        user = new Usuario(vnu.tfDniUser.getText(),
+        creauser = new Usuario(vnu.tfDniUser.getText(),
                 vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
                 vnu.pfPassword.getText(), vnu.rbSiPermiso.isSelected());
-        usuario.insertaUsuario(user);
+        usuario.insertaUsuario(creauser);
         //vnu.setVisible(false);
         vnu.tfNombre.setText("");
         vnu.tfDniUser.setText("");
@@ -94,12 +94,14 @@ public class ProfesorControlador  implements ActionListener {
         vnt.setVisible(true);
         vnt.btnNuevoTest.setActionCommand("ADDt");
         vnt.btnNuevoTest.addActionListener(this);
-        vnt.jTextAutor.setText(user.getDni());
+        vnt.jTextAutor.setText(userprof.getDni());
         
     }
     private void aniadeTest()throws NullPointerException{
+        
+        testdao=new TestDAO();
         test= new Test(testdao.devuelveSequence(),vnt.jTextNombre.getText(),Integer.parseInt(vnt.jTextDuracion.getText()),
-                            Integer.parseInt(vnt.jTextResta.getText()),user.getDni(),vnt.rbActivo.isSelected());
+                            Integer.parseInt(vnt.jTextResta.getText()),userprof.getDni(),vnt.rbActivo.isSelected());
         System.out.println(testdao.devuelveSequence());
         testdao.insertaTest(test);
         vnt.jTextNombre.setText("");
