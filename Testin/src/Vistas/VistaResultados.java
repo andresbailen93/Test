@@ -5,7 +5,9 @@
  */
 package Vistas;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelo.Examen;
 
 /**
  *
@@ -13,15 +15,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaResultados extends javax.swing.JFrame {
 
-    private DefaultTableModel modeloTabla;
+    public DefaultTableModel modeloTabla;
     /**
      * Creates new form VistaResultados
      */
-    public VistaResultados(int ntest) {
-        modeloTabla = new DefaultTableModel(new Object[] { "Nombre", "Aciertos","Fallos","Puntuación" }, 0);
+    public VistaResultados(int ntest,ArrayList<Examen> lista) {
+        modeloTabla = new DefaultTableModel(new Object[] { "DNI", "ID_TEST","Fecha","Aciertos","Fallos","Puntuación" }, 0);
         
         for (int i=0; i<ntest; i++){
-        Object[] rowData = {"1","2","3","4"};
+        
+            Object[] rowData = {"1","2","3","4","5","6"};
         modeloTabla.addRow(rowData);
         }
         initComponents();
@@ -98,15 +101,15 @@ public class VistaResultados extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaResultados(9).setVisible(true);
-            }
-        });
+        //java.awt.EventQueue.invokeLater(new Runnable() {
+           // public void run() {
+             //   new VistaResultados(9,).setVisible(true);
+            //}
+        //});
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

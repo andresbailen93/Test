@@ -25,7 +25,7 @@ public class ExamenDAO {
 
     private Connection con = null;
     PreparedStatement pstmt = null;
-    Statement stmt = null;
+    
 
     /**
      * Constructor de la clase ExamenDAO, en el que al atributo de tipo
@@ -70,10 +70,11 @@ public class ExamenDAO {
         ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
 
         try {
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE ID_TEST=" + test.getId_test());
+            pstmt = con.prepareStatement("SELECT * FROM EXAMEN WHERE ID_TEST=?");
+            pstmt.clearParameters();
+            pstmt.setInt(1,test.getId_test());
             Examen exam;
-
+            ResultSet rs=pstmt.executeQuery();
             while (rs.next()) {
                 exam = new Examen(rs.getString("DNI"), rs.getInt("ID_TEST"), rs.getDate("FECHA"), rs.getInt("ACIERTOS"), rs.getInt("FALLOS"), rs.getDouble("NOTA"));
                 lista_examenes.add(exam);
@@ -95,13 +96,15 @@ public class ExamenDAO {
      */
     public ArrayList<Examen> devolverExamenesAlumno(Usuario usser) {
 
+        
         ArrayList<Examen> lista_examenes = new ArrayList<Examen>();
 
         try {
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM EXAMEN WHERE DNI=" + usser.getDni());
+            pstmt = con.prepareStatement("SELECT * FROM EXAMEN WHERE DNI=?");
+            pstmt.clearParameters();
+            pstmt.setString(1, usser.getDni());
             Examen exam;
-
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 exam = new Examen(rs.getString("DNI"), rs.getInt("ID_TEST"), rs.getDate("FECHA"), rs.getInt("ACIERTOS"), rs.getInt("FALLOS"), rs.getDouble("NOTA"));
                 lista_examenes.add(exam);
