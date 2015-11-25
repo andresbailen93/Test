@@ -11,6 +11,10 @@ import Vistas.VistaResultados;
 import Vistas.VistaSeleccionarTest;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import modelo.Test;
+import modeloDAO.TestDAO;
 
 /**
  *
@@ -19,6 +23,8 @@ import java.awt.event.ActionListener;
 class AlumnoControlador implements ActionListener{
     
     final private VistaAlumno va;
+    private VistaSeleccionarTest vst;
+    private TestDAO testDAO;
     
     public AlumnoControlador(VistaAlumno v){
         this.va=v;
@@ -28,19 +34,16 @@ class AlumnoControlador implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("SELECCIONAR")){
-             
-            
-            VistaSeleccionarTest vst = new VistaSeleccionarTest();
-            vst.setVisible(true);
-    
-            
-        }else if(e.getActionCommand().equals("RESULTADOS")){
-            
-            
-            VistaResultados vr = new VistaResultados(10);
-            vr.setVisible(true);
-           
+        switch (e.getActionCommand()) {
+            case "SELECCIONAR":
+                vst = new VistaSeleccionarTest();
+                processTestList();
+                vst.setVisible(true);
+                break;
+            case "RESULTADOS":
+                VistaResultados vr = new VistaResultados(10);
+                vr.setVisible(true);
+                break;
         }
     }
 
@@ -50,6 +53,17 @@ class AlumnoControlador implements ActionListener{
         va.btnSeleccionar.addActionListener(this);
         va.btnResultados.setActionCommand("RESULTADOS");
         va.btnResultados.addActionListener(this);
+    }
+    
+    private void processTestList() {
+        // Recuperamos los test activos
+        ArrayList<Test> listaTest = new TestDAO().devuelveTestActivos();
+        DefaultListModel<String> listaNombreTest = new DefaultListModel<>();
+        for (Test t: listaTest) {
+            listaNombreTest.addElement(t.getNombre());
+        }
+        vst.jListTest.setModel(listaNombreTest);
+        vst.jListTest.setSelectedIndex(0);
     }
     
 }
