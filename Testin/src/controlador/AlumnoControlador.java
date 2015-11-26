@@ -67,15 +67,7 @@ class AlumnoControlador implements ActionListener{
         this.usuario = u; 
     }
 
-    public AlumnoControlador(UsuarioDAO u,String dni, VistaAlumno v){
-        usuarioDAO = (u == null) ? new UsuarioDAO() : u;
-        this.dni=dni;
-
-        this.va=v;
-        va.setVisible(true);
-        initEvents();
-        
-    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -88,20 +80,18 @@ class AlumnoControlador implements ActionListener{
                 vst.setVisible(true);
                 break;
             case "RESULTADOS":
-                alumno = usuarioDAO.devuelveUsuario(dni);
+                alumno = new UsuarioDAO().devuelveUsuario(usuario.getDni());
                 System.out.println(alumno);
                 ArrayList<Examen> lista_examenes = new ExamenDAO().devolverExamenesAlumno(alumno);
                 VistaResultados vr = new VistaResultados(lista_examenes.size());
                 
                 for(Examen ex:lista_examenes){
-                    System.out.println(ex);
-                    String dni = ex.getDni();
-                    String id_test = Integer.toString(ex.getId_test());
+                    //System.out.println(ex);
+                    
+                    
                     String fecha = new SimpleDateFormat("dd-MM-yyyy").format(ex.getFecha());
-                    String aciertos= Integer.toString(ex.getAciertos());
-                    String fallos=Integer.toString(ex.getFallos());
-                    String nota = Double.toString(ex.getNota());
-                    Object[] row ={dni,id_test,fecha,aciertos,fallos,nota};
+                    
+                    Object[] row ={ex.getDni(),ex.getId_test(),fecha,ex.getAciertos(),ex.getFallos(),ex.getNota()};
                     vr.modeloTabla.addRow(row);
                     
                     
