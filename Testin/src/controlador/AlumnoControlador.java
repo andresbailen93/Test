@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import modelo.Pregunta;
 import modelo.Respuesta;
 
@@ -83,16 +85,31 @@ class AlumnoControlador implements ActionListener{
                 ArrayList<Examen> lista_examenes = new ExamenDAO().devolverExamenesAlumno(alumno);
                 VistaResultados vr = new VistaResultados(lista_examenes.size());
                 
+                double count_nota=0;
+                double count_aciertos=0;
+                double count_fallos=0;
                 for(Examen ex:lista_examenes){
-                    //System.out.println(ex);
-                    
+                   
+                     count_nota=count_nota+(ex.getNota());
+                     count_aciertos=count_aciertos+(ex.getAciertos());
+                     count_fallos=count_fallos+(ex.getFallos());
                     
                     String fecha = new SimpleDateFormat("dd-MM-yyyy").format(ex.getFecha());
                     
-                    Object[] row ={ex.getDni(),ex.getId_test(),fecha,ex.getAciertos(),ex.getFallos(),ex.getNota()};
-                    vr.modeloTabla.addRow(row);
-                    
-                    
+                    Object[] row ={ex.getDni(),fecha,ex.getId_test(),ex.getAciertos(),ex.getFallos(),ex.getNota()};
+                    vr.modeloTabla.addRow(row);  
+                }
+                vr.modeloTabla2.addRow(new Object[]{count_aciertos, count_fallos, count_nota/lista_examenes.size()});
+                vr.tablaResultados.setEnabled(false);
+                vr.tablaResultadosMedios.setEnabled(false);
+                DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+                centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+                for(int x=0;x<vr.tablaResultados.getColumnCount();x++){
+                    vr.tablaResultados.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+                }
+                
+                for(int x=0;x<vr.tablaResultadosMedios.getColumnCount();x++){
+                    vr.tablaResultadosMedios.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
                 }
                 
                 vr.setVisible(true);

@@ -6,6 +6,8 @@
 package Vistas;
 
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.Examen;
 
@@ -16,17 +18,15 @@ import modelo.Examen;
 public class VistaResultados extends javax.swing.JFrame {
 
     public DefaultTableModel modeloTabla;
+    public DefaultTableModel modeloTabla2;
     /**
      * Creates new form VistaResultados
      */
     public VistaResultados(int ntest) {
-        modeloTabla = new DefaultTableModel(new Object[] { "DNI", "ID_TEST","Fecha","Aciertos","Fallos","Puntuación" }, 0);
         
-        /*for (int i=0; i<ntest; i++){
+        modeloTabla = new DefaultTableModel(new Object[] { "DNI", "Fecha","ID_TEST","Aciertos","Fallos","Puntuación" }, 0);
+        modeloTabla2 = new DefaultTableModel(new Object[] { "Aciertos", "Fallos","Puntuación Media:"}, 0);
         
-            Object[] rowData = {"1","2","3","4","5","6"};
-        modeloTabla.addRow(rowData);
-        }*/
         initComponents();
     }
 
@@ -40,31 +40,43 @@ public class VistaResultados extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaResultados = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaResultadosMedios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Resultados");
         setResizable(false);
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTable1.setModel(modeloTabla);
-        jScrollPane1.setViewportView(jTable1);
+        tablaResultados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tablaResultados.setModel(modeloTabla);
+        tablaResultados.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaResultados);
+
+        tablaResultadosMedios.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tablaResultadosMedios.setModel(modeloTabla2);
+        tablaResultadosMedios.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tablaResultadosMedios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,6 +122,8 @@ public class VistaResultados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTable tablaResultados;
+    public javax.swing.JTable tablaResultadosMedios;
     // End of variables declaration//GEN-END:variables
 }
