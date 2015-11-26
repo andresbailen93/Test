@@ -59,13 +59,15 @@ public class TestDAO {
         }
 
     }
+
     /**
      * Actualiza si un test esta activo o no.
+     *
      * @param tes
-     * @param disp 
+     * @param disp
      */
-    public void UpdateDispo(Test tes,Boolean disp){
-       if (psSentencia == null) {
+    public void UpdateDispo(Test tes, Boolean disp) {
+        if (psSentencia == null) {
             try {
                 psSentencia = con.prepareStatement("UPDATE TEST SET ACTIVO=?  WHERE ID_TEST=?");
                 psSentencia.clearParameters();
@@ -79,7 +81,7 @@ public class TestDAO {
                 psSentencia = null;
             }
 
-        } 
+        }
     }
 
     /**
@@ -119,11 +121,81 @@ public class TestDAO {
     }
 
     /**
+     * Devuelve los test Activos que tiene un profesor.
+     *
+     * @param u
+     * @return
+     */
+    public ArrayList<Test> devuelveTestActivosProf(Usuario u) {
+        ArrayList<Test> listaActivos_test = new ArrayList<>();
+
+        if (psSentencia == null) {
+            try {
+                try {
+                    psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ACTIVO=1 AND DNI = ?");
+                    psSentencia.clearParameters();
+                    psSentencia.setString(1, u.getDni());
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Test tester;
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    tester = new Test(rs.getInt("ID_TEST"), rs.getString("NOMBRE"),
+                            rs.getInt("DURACION"), rs.getInt("RESTA"),
+                            rs.getString("DNI"), rs.getBoolean("ACTIVO"));
+                    listaActivos_test.add(tester);
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
+        }
+        return listaActivos_test;
+
+    }
+    /**
+     * Devuelve los Test que esten desactivados por el profesor.
+     * @param u
+     * @return 
+     */
+    public ArrayList<Test> devuelveTestDesactivosProf(Usuario u) {
+        ArrayList<Test> listaDesactivos_test = new ArrayList<>();
+        if (psSentencia == null) {
+            try {
+                try {
+                    psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ACTIVO=0 AND DNI=?");
+                    psSentencia.clearParameters();
+                    psSentencia.setString(1, u.getDni());
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Test tester;
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    tester = new Test(rs.getInt("ID_TEST"), rs.getString("NOMBRE"),
+                            rs.getInt("DURACION"), rs.getInt("RESTA"),
+                            rs.getString("DNI"), rs.getBoolean("ACTIVO"));
+                    listaDesactivos_test.add(tester);
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
+        }
+        return listaDesactivos_test;
+
+    }
+
+    /**
      * Funcion que devuelve todos los test de la base de datos que esten activos
      *
      * @return ArrayList con la lista de los test que estan activos
      */
-
     public ArrayList<Test> devuelveTestActivos(Usuario u) {
         //DEVOLVER TEST CUYO VALOR ESTE ACTIVO.
         ArrayList<Test> listaActivos_test = new ArrayList<>();
@@ -155,15 +227,16 @@ public class TestDAO {
         return listaActivos_test;
 
     }
-    
+
     /**
      * Devuelve el test dado un nombre de Test.
+     *
      * @param nombre
-     * @return 
+     * @return
      */
-        public Test devuelveTestUsuario(String nombre) {
+    public Test devuelveTestNomUsuario(String nombre) {
         //DEVOLVER TEST CUYO VALOR ESTE ACTIVO.
-        Test tester=null;
+        Test tester = null;
 
         if (psSentencia == null) {
             try {
@@ -180,7 +253,6 @@ public class TestDAO {
                             rs.getInt("DURACION"), rs.getInt("RESTA"),
                             rs.getString("DNI"), rs.getBoolean("ACTIVO"));
 
-
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,10 +263,11 @@ public class TestDAO {
         return tester;
 
     }
+
     /**
-     * 
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Test getTest(Integer id) {
         Test t = null;
@@ -205,25 +278,26 @@ public class TestDAO {
             ResultSet rs = psSentencia.executeQuery();
             while (rs.next()) {
                 t = new Test(rs.getInt("ID_TEST"),
-                             rs.getString("NOMBRE"),
-                             rs.getInt("DURACION"),
-                             rs.getInt("RESTA"),
-                             rs.getString("DNI"),
-                             rs.getBoolean("ACTIVO"));
+                        rs.getString("NOMBRE"),
+                        rs.getInt("DURACION"),
+                        rs.getInt("RESTA"),
+                        rs.getString("DNI"),
+                        rs.getBoolean("ACTIVO"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TestDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return t;
     }
-/**
- * 
- * @param nombr
- * @return 
- */
-   public int getIdTest(String nombr) {
-        int idtest=0;
+
+    /**
+     *
+     * @param nombr
+     * @return
+     */
+    public int getIdTest(String nombr) {
+        int idtest = 0;
         try {
             psSentencia = con.prepareStatement("SELECT ID_TEST FROM TEST WHERE NOMBRE = ?");
             psSentencia.clearParameters();
@@ -234,12 +308,13 @@ public class TestDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(TestDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            psSentencia=null;
+        } finally {
+            psSentencia = null;
         }
-        
+
         return idtest;
     }
+
     /**
      * Funcion que devuelve el numero de secuencia siguiente para inserta en el
      * ID de la tabla.
@@ -269,10 +344,11 @@ public class TestDAO {
         return sequence;
     }
 
-/**
- * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
- * @throws Throwable 
- */
+    /**
+     * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
+     *
+     * @throws Throwable
+     */
     @Override
     protected void finalize() throws Throwable {
         super.finalize();

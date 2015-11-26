@@ -13,6 +13,7 @@ import Vistas.VistaProfesor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Test;
 import modelo.Usuario;
@@ -90,8 +91,11 @@ public class ProfesorControlador  implements ActionListener {
             case "ACTIVAtest":
                 activaTest();
                 break;
-            case "CHANGEdispo":
-                cambiaDispo();
+            case "ACTIVAdispo":
+                activaDispo();
+                break;
+            case "DESACTdispo":
+                desactivaDispo();
                 break;
             case "CLOSEupdate":
                 vat.setVisible(false);
@@ -107,6 +111,8 @@ public class ProfesorControlador  implements ActionListener {
         vistaProfesor.btnAnadeTest.addActionListener(this);
         vistaProfesor.btnCreaPregunta.setActionCommand("ADDPREGUNTA");
         vistaProfesor.btnCreaPregunta.addActionListener(this);
+        vistaProfesor.btnActivaTest.setActionCommand("ACTIVAtest");
+        vistaProfesor.btnActivaTest.addActionListener(this);
 
     }
 
@@ -229,30 +235,38 @@ public class ProfesorControlador  implements ActionListener {
     private void activaTest(){
         testdao=new TestDAO();
         vat=new VistaActivarTest();
+        vat.setVisible(true);
         
-        ArrayList<Test> lista_mites=testdao.devuelveTestes(userprof);
-        for(int i=0;i<lista_mites.size();i++){
-            vat.cbTest.addItem(lista_mites.get(i).getNombre());
+        ArrayList<Test> lista_mitesACT=testdao.devuelveTestActivosProf(userprof);
+        for(int i=0;i<lista_mitesACT.size();i++){
+            vat.cbTesDesct.addItem(lista_mitesACT.get(i).getNombre());
         }
-        String nombretest=(String)vat.cbTest.getSelectedItem();
-        teste=testdao.devuelveTestUsuario(nombretest);
-        if(teste.getActivo()){
-            vat.rbActiva.setSelected(true);
-            
-        }else{
-            vat.rbDesactivo.setSelected(true);
+        ArrayList<Test> lista_mitesDESC=testdao.devuelveTestDesactivosProf(userprof);
+        for(int i=0;i>lista_mitesDESC.size();i++){
+            vat.cbTestAct.addItem(lista_mitesDESC.get(i).getNombre());
         }
-        vat.btnActualiza.setActionCommand("CHANGEdispo");
-        vat.btnActualiza.addActionListener(this);
-    }
-    private void cambiaDispo(){
-        if(vat.rbActiva.isSelected()){
-            testdao.UpdateDispo(teste, true);
-        }else{
-            testdao.UpdateDispo(teste, false);
-        }
+        //String nombretestact=(String)vat.cbTestAct.getSelectedItem();        
+        //teste=testdao.devuelveTestNomUsuario(nombretestact);
+
+        vat.btnActiva.setActionCommand("ACTIVAdispo");
+        vat.btnActiva.addActionListener(this);
+        vat.btnDesactiva.setActionCommand("DESACTdispo");
+        vat.btnDesactiva.addActionListener(this);
         vat.btnFinaliza.setActionCommand("CLOSEupdate");
         vat.btnFinaliza.addActionListener(this);
+    }
+    private void activaDispo(){
+        String nombretestact=(String)vat.cbTestAct.getSelectedItem();
+        teste=testdao.devuelveTestNomUsuario(nombretestact);
+        testdao.UpdateDispo(teste, Boolean.TRUE);
+        //vat.cbTestAct.;
+         JOptionPane.showMessageDialog(vat, "Test Activo.",null,JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void desactivaDispo(){
+        String nombretestdest=(String)vat.cbTesDesct.getSelectedItem();
+        teste=testdao.devuelveTestNomUsuario(nombretestdest);
+        testdao.UpdateDispo(teste, Boolean.FALSE);
+        JOptionPane.showMessageDialog(vat, "Test Desactivado.",null,JOptionPane.INFORMATION_MESSAGE);
     }
     
 }

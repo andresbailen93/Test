@@ -27,40 +27,35 @@ public class VistaActivarTest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGroupAct = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        cbTest = new javax.swing.JComboBox<>();
-        rbActiva = new javax.swing.JRadioButton();
-        rbDesactivo = new javax.swing.JRadioButton();
+        cbTestAct = new javax.swing.JComboBox<>();
         btnFinaliza = new javax.swing.JButton();
-        btnActualiza = new javax.swing.JButton();
+        btnActiva = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cbTesDesct = new javax.swing.JComboBox<>();
+        btnDesactiva = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Activar Test");
 
         jLabel1.setText("Selecciona Test:");
 
-        cbTest.setModel(new javax.swing.DefaultComboBoxModel<>());
-        cbTest.addActionListener(new java.awt.event.ActionListener() {
+        cbTestAct.setModel(new javax.swing.DefaultComboBoxModel<>());
+        cbTestAct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbTestActionPerformed(evt);
+                cbTestActActionPerformed(evt);
             }
         });
-
-        btnGroupAct.add(rbActiva);
-        rbActiva.setText("Activa");
-        rbActiva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbActivaActionPerformed(evt);
-            }
-        });
-
-        btnGroupAct.add(rbDesactivo);
-        rbDesactivo.setText("Desactiva");
 
         btnFinaliza.setText("Volver");
 
-        btnActualiza.setText("Actualiza");
+        btnActiva.setText("Activa Test");
+
+        jLabel2.setText("Selecciona Test:");
+
+        cbTesDesct.setModel(new javax.swing.DefaultComboBoxModel<>());
+
+        btnDesactiva.setText("Desactiva Test");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,21 +63,28 @@ public class VistaActivarTest extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cbTest, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rbActiva)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(rbDesactivo)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbTestAct, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnDesactiva, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbTesDesct, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnFinaliza, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(btnActualiza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(83, 83, 83))
+                .addComponent(btnFinaliza, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,28 +92,26 @@ public class VistaActivarTest extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(cbTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbTestAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbDesactivo)
-                    .addComponent(rbActiva))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(btnActualiza)
+                .addComponent(btnActiva)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbTesDesct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDesactiva)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFinaliza)
-                .addContainerGap())
+                .addGap(93, 93, 93))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbActivaActionPerformed
+    private void cbTestActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTestActActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbActivaActionPerformed
-
-    private void cbTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbTestActionPerformed
+    }//GEN-LAST:event_cbTestActActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,12 +149,12 @@ public class VistaActivarTest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnActualiza;
+    public javax.swing.JButton btnActiva;
+    public javax.swing.JButton btnDesactiva;
     public javax.swing.JButton btnFinaliza;
-    private javax.swing.ButtonGroup btnGroupAct;
-    public javax.swing.JComboBox<String> cbTest;
+    public javax.swing.JComboBox<String> cbTesDesct;
+    public javax.swing.JComboBox<String> cbTestAct;
     private javax.swing.JLabel jLabel1;
-    public javax.swing.JRadioButton rbActiva;
-    public javax.swing.JRadioButton rbDesactivo;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
