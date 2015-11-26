@@ -33,6 +33,7 @@ public class VistaProfesor extends javax.swing.JFrame {
         btnCreaPregunta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Panel de control profesor");
 
         etqVistaProfesor.setText("Vista Profesor");
 

@@ -28,6 +28,7 @@ public class LoginControlador implements ActionListener {
         vistaLogin.setVisible(true);     
         vistaLogin.setLocationRelativeTo(null);       
         vistaLogin.toFront();
+        vistaLogin.setLocationRelativeTo(null);	
         initEvents();
     }
 
@@ -41,9 +42,11 @@ public class LoginControlador implements ActionListener {
                 
                 if (u.isEs_profesor()) {
                     ProfesorControlador pc= new ProfesorControlador(usuario, u,new VistaProfesor());
+                    vistaLogin.dispose();
                 }
                 else {
                     AlumnoControlador ac = new AlumnoControlador(u, new VistaAlumno(u.getNombre()));    
+                    vistaLogin.dispose();
                 }
             }
             else {

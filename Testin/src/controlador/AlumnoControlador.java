@@ -7,7 +7,6 @@ package controlador;
 
 import Vistas.VistaAlumno;
 import Vistas.VistaHacerTest;
-import Vistas.VistaProfesor;
 import Vistas.VistaResultados;
 import Vistas.VistaSeleccionarTest;
 import java.awt.event.ActionEvent;
@@ -19,7 +18,6 @@ import java.util.Calendar;
 import javax.swing.DefaultListModel;
 
 import javax.swing.JOptionPane;
-import modelo.Examen;
 import modelo.Pregunta;
 import modelo.Respuesta;
 

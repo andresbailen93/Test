@@ -47,7 +47,7 @@ public class VistaLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TodoTesJava v0.1");
+        setTitle("TodoTesJava v0.1 Login");
         setForeground(java.awt.Color.white);
         setResizable(false);
 

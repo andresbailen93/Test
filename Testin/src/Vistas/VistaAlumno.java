@@ -35,6 +35,7 @@ public class VistaAlumno extends javax.swing.JFrame {
         hello_msg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Panel de control Alumno");
 
         jLabel1.setText("Vista Alumno");
 

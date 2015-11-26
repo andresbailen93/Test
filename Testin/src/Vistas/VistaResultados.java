@@ -42,8 +42,8 @@ public class VistaResultados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Resultados:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Resultados");
         setResizable(false);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());

@@ -33,7 +33,8 @@ public class VistaSeleccionarTest extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListTest = new javax.swing.JList();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Seleccionar test");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

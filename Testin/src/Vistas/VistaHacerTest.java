@@ -33,7 +33,8 @@ public class VistaHacerTest extends javax.swing.JFrame {
         labelPregunta = new javax.swing.JLabel();
         btnSiguiente = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Test");
         setResizable(false);
 
         labelPregunta.setText("jLabel1");
