@@ -28,7 +28,6 @@ public class LoginControlador implements ActionListener {
         vistaLogin.setVisible(true);     
         vistaLogin.setLocationRelativeTo(null);       
         vistaLogin.toFront();
-        vistaLogin.setLocationRelativeTo(null);	
         initEvents();
     }
 

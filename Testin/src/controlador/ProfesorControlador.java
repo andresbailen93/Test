@@ -40,6 +40,7 @@ public class ProfesorControlador  implements ActionListener {
         usuario = (u == null) ? new UsuarioDAO() : u;
         vistaProfesor = vp;
         vistaProfesor.setVisible(true);
+        vistaProfesor.setLocationRelativeTo(null);
         userprof=us;
         initEvents();
     }
@@ -84,6 +85,7 @@ public class ProfesorControlador  implements ActionListener {
     private void aniadeVistaUsuario() throws NullPointerException{
         vnu= new VistaNuevoUsuario();
         vnu.setVisible(true);
+        vnu.setLocationRelativeTo(null);
         vnu.btnAnadir.setActionCommand("ADDu");
         vnu.btnAnadir.addActionListener(this);
         
@@ -95,16 +97,17 @@ public class ProfesorControlador  implements ActionListener {
                 vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
                 vnu.pfPassword.getText(), vnu.rbSiPermiso.isSelected());
         usuario.insertaUsuario(creauser);
-        vnu.tfNombre.setText("");
+        /*vnu.tfNombre.setText("");
         vnu.tfDniUser.setText("");
         vnu.tfApellidos.setText("");
-        vnu.pfPassword.setText("");
+        vnu.pfPassword.setText("");*/
 
-        vistaProfesor.setVisible(true);
+      
         }
     private void aniadeNuevoTest()throws NullPointerException{
         vnt=new VistaNuevoTest();
         vnt.setVisible(true);
+        vnt.setLocationRelativeTo(null);
         vnt.btnNuevoTest.setActionCommand("ADDt");
         vnt.btnNuevoTest.addActionListener(this);
         vnt.jTextAutor.setText(userprof.getDni());
@@ -119,7 +122,7 @@ public class ProfesorControlador  implements ActionListener {
         vnt.jTextNombre.setText("");
         vnt.cbDuracion.setSelectedIndex(0);
         vnt.cbRestada.setSelectedIndex(0);
-        vistaProfesor.setVisible(true);
+        //vistaProfesor.setVisible(true);
         vnt.setVisible(false);
 
     }
@@ -128,6 +131,7 @@ public class ProfesorControlador  implements ActionListener {
         testdao=new TestDAO();
         categodao=new CategoriaDAO();
         vcp.setVisible(true);
+        vcp.setLocationRelativeTo(null);
         ArrayList<Test> lista_test=testdao.devuelveTestes(userprof);
         
         for(int i=0;i<lista_test.size();i++){

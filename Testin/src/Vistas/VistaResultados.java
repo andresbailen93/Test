@@ -48,12 +48,10 @@ public class VistaResultados extends javax.swing.JFrame {
         setTitle("Resultados");
         setResizable(false);
 
-        tablaResultados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tablaResultados.setModel(modeloTabla);
         tablaResultados.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaResultados);
 
-        tablaResultadosMedios.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tablaResultadosMedios.setModel(modeloTabla2);
         tablaResultadosMedios.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaResultadosMedios);
@@ -64,10 +62,10 @@ public class VistaResultados extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

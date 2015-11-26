@@ -63,6 +63,7 @@ class AlumnoControlador implements ActionListener{
     public AlumnoControlador(Usuario u, VistaAlumno v){
        this.va=v;
         va.setVisible(true);
+        va.setLocationRelativeTo(null);
         initEvents();
         this.usuario = u; 
     }
@@ -78,6 +79,7 @@ class AlumnoControlador implements ActionListener{
                 vst.btnSeleccionarTest.addActionListener(this);
                 processTestList();
                 vst.setVisible(true);
+                vst.setLocationRelativeTo(null);
                 break;
             case "RESULTADOS":
                 alumno = new UsuarioDAO().devuelveUsuario(usuario.getDni());
@@ -113,6 +115,7 @@ class AlumnoControlador implements ActionListener{
                 }
                 
                 vr.setVisible(true);
+                vr.setLocationRelativeTo(null);
                 
                 break;
             case "SELECCIONAR_TEST":
@@ -123,6 +126,7 @@ class AlumnoControlador implements ActionListener{
                 listaPreguntas = new PreguntaDAO().getPreguntasFromTest(testActual);
                 processPregunta();
                 vht.setVisible(true);
+                vht.setLocationRelativeTo(null);
                 vht.btnSiguiente.setActionCommand("SIGUIENTE_PREGUNTA");
                 vht.btnSiguiente.addActionListener(this);
                 break;
