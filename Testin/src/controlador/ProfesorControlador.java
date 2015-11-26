@@ -51,6 +51,7 @@ public class ProfesorControlador  implements ActionListener {
         usuario = (u == null) ? new UsuarioDAO() : u;
         vistaProfesor = vp;
         vistaProfesor.setVisible(true);
+        vistaProfesor.setLocationRelativeTo(null);
         userprof=us;
         initEvents();
     }
@@ -99,6 +100,7 @@ public class ProfesorControlador  implements ActionListener {
     private void aniadeVistaUsuario() throws NullPointerException{
         vnu= new VistaNuevoUsuario();
         vnu.setVisible(true);
+        vnu.setLocationRelativeTo(null);
         vnu.btnAnadir.setActionCommand("ADDu");
         vnu.btnAnadir.addActionListener(this);
         
@@ -115,11 +117,16 @@ public class ProfesorControlador  implements ActionListener {
         vnu.tfApellidos.setText("");
         vnu.pfPassword.setText("");
         vnu.setVisible(false);
+        vnu.pfPassword.setText("");
+        
         vistaProfesor.setVisible(true);
+
+      
         }
     private void aniadeNuevoTest()throws NullPointerException{
         vnt=new VistaNuevoTest();
         vnt.setVisible(true);
+        vnt.setLocationRelativeTo(null);
         vnt.btnNuevoTest.setActionCommand("ADDt");
         vnt.btnNuevoTest.addActionListener(this);
         vnt.jTextAutor.setText(userprof.getDni());
@@ -129,12 +136,10 @@ public class ProfesorControlador  implements ActionListener {
         testdao=new TestDAO();
         test= new Test(testdao.devuelveSequence(),vnt.jTextNombre.getText(),vnt.cbDuracion.getSelectedIndex()*60,
                             vnt.cbRestada.getSelectedIndex(),userprof.getDni(),vnt.rbActivo.isSelected());
-       // System.out.println(testdao.devuelveSequence());
         testdao.insertaTest(test);
         vnt.jTextNombre.setText("");
         vnt.cbDuracion.setSelectedIndex(0);
         vnt.cbRestada.setSelectedIndex(0);
-        vistaProfesor.setVisible(true);
         vnt.setVisible(false);
 
     }
@@ -143,7 +148,9 @@ public class ProfesorControlador  implements ActionListener {
         testdao=new TestDAO();
         categodao=new CategoriaDAO();
         vcp.setVisible(true);
+
         lista_test=testdao.devuelveTestes(userprof);
+        vcp.setLocationRelativeTo(null);
         
         for(int i=0;i<lista_test.size();i++){
             vcp.cbSelecTestID.addItem(lista_test.get(i).getNombre());

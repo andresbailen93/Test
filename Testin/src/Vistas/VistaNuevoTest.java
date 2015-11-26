@@ -36,11 +36,12 @@ public class VistaNuevoTest extends javax.swing.JFrame {
         jTextAutor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         rbActivo = new javax.swing.JRadioButton();
-        cbDuracion = new javax.swing.JComboBox<>();
-        cbRestada = new javax.swing.JComboBox<>();
+        cbDuracion = new javax.swing.JComboBox<String>();
+        cbRestada = new javax.swing.JComboBox<String>();
         lblTiempo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Añadir nuevo test");
 
         label_nombre.setText("Nombre:");
 

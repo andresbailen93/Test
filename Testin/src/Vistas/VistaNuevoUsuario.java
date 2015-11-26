@@ -45,7 +45,7 @@ public class VistaNuevoUsuario extends javax.swing.JFrame {
         buttonGroup1.add(rbSiPermiso);
         buttonGroup1.add(rbNoPermiso);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo usuario");
 
         btnAnadir.setText("Añadir");

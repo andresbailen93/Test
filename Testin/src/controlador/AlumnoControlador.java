@@ -7,7 +7,6 @@ package controlador;
 
 import Vistas.VistaAlumno;
 import Vistas.VistaHacerTest;
-import Vistas.VistaProfesor;
 import Vistas.VistaResultados;
 import Vistas.VistaSeleccionarTest;
 import java.awt.event.ActionEvent;
@@ -17,9 +16,10 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
-import modelo.Examen;
+import javax.swing.table.DefaultTableCellRenderer;
 import modelo.Pregunta;
 import modelo.Respuesta;
 
@@ -63,19 +63,12 @@ class AlumnoControlador implements ActionListener{
     public AlumnoControlador(Usuario u, VistaAlumno v){
        this.va=v;
         va.setVisible(true);
+        va.setLocationRelativeTo(null);
         initEvents();
         this.usuario = u; 
     }
 
-    public AlumnoControlador(UsuarioDAO u,String dni, VistaAlumno v){
-        usuarioDAO = (u == null) ? new UsuarioDAO() : u;
-        this.dni=dni;
-
-        this.va=v;
-        va.setVisible(true);
-        initEvents();
-        
-    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -86,28 +79,43 @@ class AlumnoControlador implements ActionListener{
                 vst.btnSeleccionarTest.addActionListener(this);
                 processTestList();
                 vst.setVisible(true);
+                vst.setLocationRelativeTo(null);
                 break;
             case "RESULTADOS":
-                alumno = usuarioDAO.devuelveUsuario(dni);
+                alumno = new UsuarioDAO().devuelveUsuario(usuario.getDni());
                 System.out.println(alumno);
                 ArrayList<Examen> lista_examenes = new ExamenDAO().devolverExamenesAlumno(alumno);
                 VistaResultados vr = new VistaResultados(lista_examenes.size());
                 
+                double count_nota=0;
+                double count_aciertos=0;
+                double count_fallos=0;
                 for(Examen ex:lista_examenes){
-                    System.out.println(ex);
-                    String dni = ex.getDni();
-                    String id_test = Integer.toString(ex.getId_test());
+                   
+                     count_nota=count_nota+(ex.getNota());
+                     count_aciertos=count_aciertos+(ex.getAciertos());
+                     count_fallos=count_fallos+(ex.getFallos());
+                    
                     String fecha = new SimpleDateFormat("dd-MM-yyyy").format(ex.getFecha());
-                    String aciertos= Integer.toString(ex.getAciertos());
-                    String fallos=Integer.toString(ex.getFallos());
-                    String nota = Double.toString(ex.getNota());
-                    Object[] row ={dni,id_test,fecha,aciertos,fallos,nota};
-                    vr.modeloTabla.addRow(row);
                     
-                    
+                    Object[] row ={ex.getDni(),fecha,ex.getId_test(),ex.getAciertos(),ex.getFallos(),ex.getNota()};
+                    vr.modeloTabla.addRow(row);  
+                }
+                vr.modeloTabla2.addRow(new Object[]{count_aciertos, count_fallos, count_nota/lista_examenes.size()});
+                vr.tablaResultados.setEnabled(false);
+                vr.tablaResultadosMedios.setEnabled(false);
+                DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+                centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+                for(int x=0;x<vr.tablaResultados.getColumnCount();x++){
+                    vr.tablaResultados.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+                }
+                
+                for(int x=0;x<vr.tablaResultadosMedios.getColumnCount();x++){
+                    vr.tablaResultadosMedios.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
                 }
                 
                 vr.setVisible(true);
+                vr.setLocationRelativeTo(null);
                 
                 break;
             case "SELECCIONAR_TEST":
@@ -118,6 +126,7 @@ class AlumnoControlador implements ActionListener{
                 listaPreguntas = new PreguntaDAO().getPreguntasFromTest(testActual);
                 processPregunta();
                 vht.setVisible(true);
+                vht.setLocationRelativeTo(null);
                 vht.btnSiguiente.setActionCommand("SIGUIENTE_PREGUNTA");
                 vht.btnSiguiente.addActionListener(this);
                 break;

@@ -37,7 +37,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
         tfAnadeTema = new javax.swing.JTextField();
         btnaddTema = new javax.swing.JButton();
         lblTestId = new javax.swing.JLabel();
-        cbSelecTestID = new javax.swing.JComboBox<>();
+        cbSelecTestID = new javax.swing.JComboBox<String>();
         jPanelRespuestas = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         rbtnUno = new javax.swing.JRadioButton();
@@ -57,7 +57,8 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
         buttonGroup1.add(rbtnTres);
         buttonGroup1.add(rbtnCuatro);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Añadir nueva pregunta");
 
         btnAnadirPreg.setText("Añadir Pregunta");
         btnAnadirPreg.addActionListener(new java.awt.event.ActionListener() {
