@@ -59,6 +59,28 @@ public class TestDAO {
         }
 
     }
+    /**
+     * Actualiza si un test esta activo o no.
+     * @param tes
+     * @param disp 
+     */
+    public void UpdateDispo(Test tes,Boolean disp){
+       if (psSentencia == null) {
+            try {
+                psSentencia = con.prepareStatement("UPDATE TEST SET ACTIVO=?  WHERE ID_TEST=?");
+                psSentencia.clearParameters();
+                psSentencia.setBoolean(1, disp);
+                psSentencia.setInt(2, tes.getId_test());
+                psSentencia.executeUpdate();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
+
+        } 
+    }
 
     /**
      * Devuelve las listas de Test dado un usuario.
@@ -134,6 +156,46 @@ public class TestDAO {
 
     }
     
+    /**
+     * Devuelve el test dado un nombre de Test.
+     * @param nombre
+     * @return 
+     */
+        public Test devuelveTestUsuario(String nombre) {
+        //DEVOLVER TEST CUYO VALOR ESTE ACTIVO.
+        Test tester=null;
+
+        if (psSentencia == null) {
+            try {
+                try {
+                    psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE NOMBRE=?");
+                    psSentencia.clearParameters();
+                    psSentencia.setString(1, nombre);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ResultSet rs = psSentencia.executeQuery();
+                while (rs.next()) {
+                    tester = new Test(rs.getInt("ID_TEST"), rs.getString("NOMBRE"),
+                            rs.getInt("DURACION"), rs.getInt("RESTA"),
+                            rs.getString("DNI"), rs.getBoolean("ACTIVO"));
+
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                psSentencia = null;
+            }
+        }
+        return tester;
+
+    }
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Test getTest(Integer id) {
         Test t = null;
         try {

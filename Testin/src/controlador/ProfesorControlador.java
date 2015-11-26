@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import Vistas.VistaActivarTest;
 import Vistas.VistaCrearPregunta;
 import Vistas.VistaNuevoTest;
 import Vistas.VistaNuevoUsuario;
@@ -38,9 +39,11 @@ public class ProfesorControlador  implements ActionListener {
     private VistaNuevoUsuario vnu=null;
     private VistaNuevoTest vnt=null;
     private VistaCrearPregunta vcp=null;
+    private VistaActivarTest vat=null;
     private Usuario creauser=null;
     private final Usuario userprof;
     private Test test=null;
+    private Test teste=null;
     private Pregunta pregunta=null;
     private Respuesta respuesta=null;
     private ArrayList<Test> lista_test;
@@ -84,6 +87,16 @@ public class ProfesorControlador  implements ActionListener {
             case "CLOSEpregunta":
                 cierrapregunta();
                 break;
+            case "ACTIVAtest":
+                activaTest();
+                break;
+            case "CHANGEdispo":
+                cambiaDispo();
+                break;
+            case "CLOSEupdate":
+                vat.setVisible(false);
+                break;
+                    
         }
     }
 
@@ -213,4 +226,33 @@ public class ProfesorControlador  implements ActionListener {
     private void cierrapregunta(){
         vcp.setVisible(false);
     }
+    private void activaTest(){
+        testdao=new TestDAO();
+        vat=new VistaActivarTest();
+        
+        ArrayList<Test> lista_mites=testdao.devuelveTestes(userprof);
+        for(int i=0;i<lista_mites.size();i++){
+            vat.cbTest.addItem(lista_mites.get(i).getNombre());
+        }
+        String nombretest=(String)vat.cbTest.getSelectedItem();
+        teste=testdao.devuelveTestUsuario(nombretest);
+        if(teste.getActivo()){
+            vat.rbActiva.setSelected(true);
+            
+        }else{
+            vat.rbDesactivo.setSelected(true);
+        }
+        vat.btnActualiza.setActionCommand("CHANGEdispo");
+        vat.btnActualiza.addActionListener(this);
+    }
+    private void cambiaDispo(){
+        if(vat.rbActiva.isSelected()){
+            testdao.UpdateDispo(teste, true);
+        }else{
+            testdao.UpdateDispo(teste, false);
+        }
+        vat.btnFinaliza.setActionCommand("CLOSEupdate");
+        vat.btnFinaliza.addActionListener(this);
+    }
+    
 }

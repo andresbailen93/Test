@@ -35,6 +35,7 @@
                   <Component id="btnAnadeTest" max="32767" attributes="0"/>
                   <Component id="btnCreaPregunta" max="32767" attributes="0"/>
                   <Component id="btnAnadirUsuario" max="32767" attributes="0"/>
+                  <Component id="btnActivaTest" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -45,13 +46,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="etqVistaProfesor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="155" max="32767" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
               <Component id="btnAnadeTest" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnCreaPregunta" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAnadirUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnActivaTest" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,6 +88,14 @@
     <Component class="javax.swing.JButton" name="btnCreaPregunta">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir Pregunta"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnActivaTest">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Activar/Desactivar Test"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
