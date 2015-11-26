@@ -115,6 +115,38 @@ public class CategoriaDAO {
     }
 
     /**
+     * Funcion que devuelve el ID_Categoria dado un nombre de categoria.
+     * @param nombr Nombre de la categoria.
+     * @return Idenfiticador de la categoria.
+     */
+       public int devuelveCategoria(String nombr) {
+           int idcategoria=-1;
+        if (pstmt == null) {
+            try {
+                try {
+                    pstmt = con.prepareStatement("SELECT ID_CATEGORIA  FROM CATEGORIA WHERE NOMBRE=?");
+                    pstmt.clearParameters();
+                    pstmt.setString(1, nombr);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    idcategoria = rs.getInt("ID_CATEGORIA");
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                pstmt = null;
+            }
+        }
+        return idcategoria;
+    }
+    
+    
+    
+    /**
      * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
      *
      * @throws Throwable

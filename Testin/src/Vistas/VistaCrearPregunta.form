@@ -263,7 +263,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tdRespCuatro" max="32767" attributes="0"/>
+                                      <Component id="tfRespCuatro" max="32767" attributes="0"/>
                                       <Component id="tfRespTres" max="32767" attributes="0"/>
                                       <Component id="tfRespDos" max="32767" attributes="0"/>
                                   </Group>
@@ -302,7 +302,7 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tdRespCuatro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfRespCuatro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtnCuatro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -352,6 +352,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="4"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="tfRespDos">
           <Events>
@@ -371,7 +374,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="tdRespCuatro">
+        <Component class="javax.swing.JTextField" name="tfRespCuatro">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>

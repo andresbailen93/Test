@@ -82,7 +82,6 @@ public class RespuestaDAO {
                             rs.getString("TEXTO"), rs.getBoolean("CORRECTA"),
                             rs.getInt("ID_PREGUNTA"));
                     lista_respuesta.add(respuesta);
-
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(RespuestaDAO.class.getName()).log(Level.SEVERE, null, ex);

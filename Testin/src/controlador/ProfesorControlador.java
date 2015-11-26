@@ -15,9 +15,13 @@ import java.util.ArrayList;
 import modelo.Categoria;
 import modelo.Test;
 import modelo.Usuario;
+import modelo.Pregunta;
+import modelo.Respuesta;
 import modeloDAO.CategoriaDAO;
 import modeloDAO.TestDAO;
 import modeloDAO.UsuarioDAO;
+import modeloDAO.PreguntaDAO;
+import modeloDAO.RespuestaDAO;
 
 /**
  *
@@ -28,13 +32,20 @@ public class ProfesorControlador  implements ActionListener {
     final private UsuarioDAO usuario;
     private TestDAO testdao=null;
     private CategoriaDAO categodao=null;
+    private PreguntaDAO preguntadao=null;
+    private RespuestaDAO respuestadao=null;
     final private VistaProfesor vistaProfesor;
     private VistaNuevoUsuario vnu=null;
     private VistaNuevoTest vnt=null;
     private VistaCrearPregunta vcp=null;
     private Usuario creauser=null;
-    private Usuario userprof;
+    private final Usuario userprof;
     private Test test=null;
+    private Pregunta pregunta=null;
+    private Respuesta respuesta=null;
+    private ArrayList<Test> lista_test;
+    private ArrayList<Categoria> lista_cate;
+    private byte[] bytes;
 
     public ProfesorControlador(UsuarioDAO u,Usuario us, VistaProfesor vp) throws NullPointerException{
         usuario = (u == null) ? new UsuarioDAO() : u;
@@ -63,11 +74,15 @@ public class ProfesorControlador  implements ActionListener {
             case "ADDPREGUNTA":
                 aniadeNuevaPregunta();
                 break;
-            case "ADDp":
-               //aniadePregunta();
-                break;
             case"ADDcategoria":
-                  aniadeCategoria();  
+                aniadeCategoria();
+                break;
+            case "ADDpregunta":
+                aniadePregunta();
+                break;
+            case "CLOSEpregunta":
+                cierrapregunta();
+                break;
         }
     }
 
@@ -91,15 +106,15 @@ public class ProfesorControlador  implements ActionListener {
 
     private void aniadeUsuario() throws NullPointerException{
        
-        creauser = new Usuario(vnu.tfDniUser.getText(),
-                vnu.tfNombre.getText(), vnu.tfApellidos.getText(),
-                vnu.pfPassword.getText(), vnu.rbSiPermiso.isSelected());
+        creauser = new Usuario(vnu.tfDniUser.getText(),vnu.tfNombre.getText(), 
+                                vnu.tfApellidos.getText(), vnu.pfPassword.getText(),
+                                vnu.rbSiPermiso.isSelected());
         usuario.insertaUsuario(creauser);
         vnu.tfNombre.setText("");
         vnu.tfDniUser.setText("");
         vnu.tfApellidos.setText("");
         vnu.pfPassword.setText("");
-
+        vnu.setVisible(false);
         vistaProfesor.setVisible(true);
         }
     private void aniadeNuevoTest()throws NullPointerException{
@@ -128,18 +143,22 @@ public class ProfesorControlador  implements ActionListener {
         testdao=new TestDAO();
         categodao=new CategoriaDAO();
         vcp.setVisible(true);
-        ArrayList<Test> lista_test=testdao.devuelveTestes(userprof);
+        lista_test=testdao.devuelveTestes(userprof);
         
         for(int i=0;i<lista_test.size();i++){
             vcp.cbSelecTestID.addItem(lista_test.get(i).getNombre());
         }
         
-        ArrayList<Categoria> lista_cate=categodao.ListarCategorias();
+        lista_cate=categodao.ListarCategorias();
         for(int i=0;i<lista_cate.size();i++){
             vcp.cbSelecTema.addItem(lista_cate.get(i).getNombre());
         }
         vcp.btnaddTema.setActionCommand("ADDcategoria");
         vcp.btnaddTema.addActionListener(this);
+        vcp.btnAnadirPreg.setActionCommand("ADDpregunta");
+        vcp.btnAnadirPreg.addActionListener(this);
+        vcp.btnFinal.setActionCommand("CLOSEpregunta");
+        vcp.btnFinal.addActionListener(this);
     }
     private void aniadeCategoria(){
         String categoria=vcp.tfAnadeTema.getText();
@@ -148,7 +167,43 @@ public class ProfesorControlador  implements ActionListener {
         categodao.InsertarCategoria(cat);
         vcp.cbSelecTema.addItem(cat.getNombre());
     }
-
-    
-
+    private void aniadePregunta(){
+        preguntadao=new PreguntaDAO();
+        respuestadao=new RespuestaDAO();
+        int idpregunta=preguntadao.devuelveSequence();
+        int idcategoria=categodao.devuelveCategoria((String)vcp.cbSelecTema.getSelectedItem());
+        pregunta=new Pregunta(idpregunta,vcp.tfTextoPregunta.getText(),idcategoria,bytes );
+        int idtest=testdao.getIdTest((String)vcp.cbSelecTestID.getSelectedItem());
+        preguntadao.setPregunta(pregunta,idtest);
+        
+        if(!vcp.tfRespUno.getText().equals("")){
+            respuesta=new Respuesta(respuestadao.devuelveSequence(),vcp.tfRespUno.getText(),vcp.rbtnUno.isSelected(),idpregunta);
+            respuestadao.insertaRespuesta(respuesta);
+            respuesta=null;
+        }
+        if(!vcp.tfRespDos.getText().equals("")){
+            respuesta=new Respuesta(respuestadao.devuelveSequence(),vcp.tfRespDos.getText(),vcp.rbtnDos.isSelected(),idpregunta);
+            respuestadao.insertaRespuesta(respuesta);
+            respuesta=null;
+        }
+        if(!vcp.tfRespTres.getText().equals("")){
+            respuesta=new Respuesta(respuestadao.devuelveSequence(),vcp.tfRespTres.getText(),vcp.rbtnTres.isSelected(),idpregunta);
+            respuestadao.insertaRespuesta(respuesta);
+            respuesta=null;
+        }
+        if(!vcp.tfRespCuatro.getText().equals("")){
+            respuesta=new Respuesta(respuestadao.devuelveSequence(),vcp.tfRespCuatro.getText(),vcp.rbtnCuatro.isSelected(),idpregunta);
+            respuestadao.insertaRespuesta(respuesta);
+            respuesta=null;
+        }
+        vcp.tfTextoPregunta.setText("");
+        vcp.tfAnadeTema.setText("");
+        vcp.tfRespUno.setText("");
+        vcp.tfRespDos.setText("");
+        vcp.tfRespTres.setText("");
+        vcp.tfRespCuatro.setText("");
+}
+    private void cierrapregunta(){
+        vcp.setVisible(false);
+    }
 }

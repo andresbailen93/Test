@@ -47,7 +47,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
         tfRespDos = new javax.swing.JTextField();
         tfRespTres = new javax.swing.JTextField();
         tfRespUno = new javax.swing.JTextField();
-        tdRespCuatro = new javax.swing.JTextField();
+        tfRespCuatro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnAnadirResp = new javax.swing.JButton();
         btnFinal = new javax.swing.JButton();
@@ -201,7 +201,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
                                     .addComponent(rbtnCuatro))
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tdRespCuatro)
+                                    .addComponent(tfRespCuatro)
                                     .addComponent(tfRespTres)
                                     .addComponent(tfRespDos)))))
                     .addGroup(jPanelRespuestasLayout.createSequentialGroup()
@@ -229,7 +229,7 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
                     .addComponent(tfRespTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tdRespCuatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfRespCuatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtnCuatro))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelRespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -352,12 +352,12 @@ public class VistaCrearPregunta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanelRespuestas;
     public javax.swing.JLabel lblTestId;
-    private javax.swing.JRadioButton rbtnCuatro;
+    public javax.swing.JRadioButton rbtnCuatro;
     public javax.swing.JRadioButton rbtnDos;
     public javax.swing.JRadioButton rbtnTres;
     public javax.swing.JRadioButton rbtnUno;
-    public javax.swing.JTextField tdRespCuatro;
     public javax.swing.JTextField tfAnadeTema;
+    public javax.swing.JTextField tfRespCuatro;
     public javax.swing.JTextField tfRespDos;
     public javax.swing.JTextField tfRespTres;
     public javax.swing.JTextField tfRespUno;

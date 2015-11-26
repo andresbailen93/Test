@@ -136,7 +136,6 @@ public class TestDAO {
     
     public Test getTest(Integer id) {
         Test t = null;
-        
         try {
             psSentencia = con.prepareStatement("SELECT * FROM TEST WHERE ID_TEST = ?");
             psSentencia.clearParameters();
@@ -157,10 +156,28 @@ public class TestDAO {
         return t;
     }
 /**
- * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
- * @throws Throwable 
+ * 
+ * @param nombr
+ * @return 
  */
-
+   public int getIdTest(String nombr) {
+        int idtest=0;
+        try {
+            psSentencia = con.prepareStatement("SELECT ID_TEST FROM TEST WHERE NOMBRE = ?");
+            psSentencia.clearParameters();
+            psSentencia.setString(1, nombr);
+            ResultSet rs = psSentencia.executeQuery();
+            while (rs.next()) {
+                idtest = rs.getInt("ID_TEST");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            psSentencia=null;
+        }
+        
+        return idtest;
+    }
     /**
      * Funcion que devuelve el numero de secuencia siguiente para inserta en el
      * ID de la tabla.
@@ -190,11 +207,10 @@ public class TestDAO {
         return sequence;
     }
 
-    /**
-     * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
-     *
-     * @throws Throwable
-     */
+/**
+ * Funcion que hace que se cierre la conexion cuando se elimina el objeto.
+ * @throws Throwable 
+ */
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
