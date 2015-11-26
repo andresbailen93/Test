@@ -240,6 +240,7 @@ public class ProfesorControlador  implements ActionListener {
         ArrayList<Test> lista_mitesACT=testdao.devuelveTestActivosProf(userprof);
         for(int i=0;i<lista_mitesACT.size();i++){
             vat.cbTesDesct.addItem(lista_mitesACT.get(i).getNombre());
+            //ESto hay que revisarlo
         }
         ArrayList<Test> lista_mitesDESC=testdao.devuelveTestDesactivosProf(userprof);
         for(int i=0;i>lista_mitesDESC.size();i++){
